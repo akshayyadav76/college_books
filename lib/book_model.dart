@@ -21,7 +21,7 @@ BookModel({
            
            });
 
-List<BookModel> mca=[
+static List<BookModel> mca=[
 
   BookModel(
   bookName: "Data Structure",
