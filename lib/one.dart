@@ -3,7 +3,6 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
 
 import './pdf_screen.dart';
@@ -21,28 +20,6 @@ class _MyAppState extends State<MyApp> {
   String pathPDF = "";
   String corruptedPathPDF = "";
 
-  
-  void initState() {
-    super.initState();
-
-    fromAsset('assets/smple1.pdf', 'smple1.pdf').then((f) {
-      setState(() {
-        corruptedPathPDF = f.path;
-      });
-    });
-
-    // fromAsset('assets/smple2.pdf', 'smple2.pdf').then((f) {
-    //   setState(() {
-    //     pathPDF = f.path;
-    //   });
-    // });
-    createFileOfPdfUrl().then((f) {
-      setState(() {
-        pathPDF = f.path;
-        print(pathPDF);
-      });
-    });
-  }
 
   Future<File> createFileOfPdfUrl() async {
     // final url =
@@ -59,25 +36,6 @@ class _MyAppState extends State<MyApp> {
   }
 
 
-  Future<File> fromAsset(String asset, String filename) async {
-    // To open from assets, you can copy them to the app storage folder, and the access them "locally"
-    Completer<File> completer = Completer();
-
-    try {
-      var dir = await getApplicationDocumentsDirectory();
-      File file = File("${dir.path}/$filename");
-      var data = await rootBundle.load(asset);
-      var bytes = data.buffer.asUint8List();
-      await file.writeAsBytes(bytes, flush: true);
-      completer.complete(file);
-    } catch (e) {
-      throw Exception('Error parsing asset file!');
-    }
-
-    return completer.future;
-  }
-
-  
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter PDF View',
