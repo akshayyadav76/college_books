@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './one.dart';
+import './MyApp.dart';
 
 void main() => runApp(CollegeBooks());
 
