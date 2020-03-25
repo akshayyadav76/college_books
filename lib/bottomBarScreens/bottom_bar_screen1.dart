@@ -5,28 +5,47 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:path_provider/path_provider.dart';
 
-import '../book_model.dart';
+import '../book_model.dart' ;
 import '../pdf_screen.dart';
 
 String pathPDF = "";
 String corruptedPathPDF = "";
-List<BookModel> data = BookModel.mca[0];
+
+
+
+
+class BottomBarScreen1 extends StatefulWidget {
+  @override
+  _BottomBarScreen1State createState() => _BottomBarScreen1State();
+}
+
+class _BottomBarScreen1State extends State<BottomBarScreen1> {
+
+  var popSelectedIndex=0;
+  var indexChange= true;
+ List<BookModel> data= AllBooks().mca[0];   //AllBooks().mca[popSelectedIndex];
+
+void todo(int index){
+    data = AllBooks().mca[index];
+}
 
 Future<File> createFileOfPdfUrl() async {
   // final url =
   // "https://berlin2017.droidcon.cod.newthinking.net/sites/global.droidcon.cod.newthinking.net/files/media/documents/Flutter%20-%2060FPS%20UI%20of%20the%20future%20%20-%20DroidconDE%2017.pdf";
-  final url = "https://pdfkit.org/docs/guide.pdf";
-  final filename = url.substring(url.lastIndexOf("/") + 1);
-  var request = await HttpClient().getUrl(Uri.parse(url));
-  var response = await request.close();
-  var bytes = await consolidateHttpClientResponseBytes(response);
-  String dir = (await getApplicationDocumentsDirectory()).path;
-  File file = new File('$dir/$filename');
-  await file.writeAsBytes(bytes);
-  return file;
+ 
+   print("woring");
+   return null;
+  // final url = "https://pdfkit.org/docs/guide.pdf";
+  // final filename = url.substring(url.lastIndexOf("/") + 1);
+  // var request = await HttpClient().getUrl(Uri.parse(url));
+  // var response = await request.close();
+  // var bytes = await consolidateHttpClientResponseBytes(response);
+  // String dir = (await getApplicationDocumentsDirectory()).path;
+  // File file = new File('$dir/$filename');
+  // await file.writeAsBytes(bytes);
+  // return file;
 }
 
-class BottomBarScreen1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -69,13 +88,22 @@ class BottomBarScreen1 extends StatelessWidget {
                             ],
                           ),
                           itemBuilder: (context) => [
-                            PopupMenuItem(child: Text("Sem 1")),
-                            PopupMenuItem(child: Text("Sem 2")),
-                            PopupMenuItem(child: Text("Sem 3")),
-                            PopupMenuItem(child: Text("Sem 4")),
-                            PopupMenuItem(child: Text("Sem 5")),
-                            PopupMenuItem(child: Text("Sem 6")),
+                            PopupMenuItem(child: Text("Sem 1"),value: 0,),
+                            PopupMenuItem(child: Text("Sem 2"),value: 1,),
+                            PopupMenuItem(child: Text("Sem 3"),value: 2,),
+                            PopupMenuItem(child: Text("Sem 4"),value: 3,),
+                            PopupMenuItem(child: Text("Sem 5"),value: 4,),
+                            PopupMenuItem(child: Text("Sem 6"),value: 5,),
                           ],
+                          onSelected: (selectedValue){
+                             todo(selectedValue);
+                            setState(() {
+                               print(selectedValue);
+                              popSelectedIndex = selectedValue;
+                            print(popSelectedIndex);
+                            });
+
+                          },
                         ),
                       ),
                     ]),
@@ -121,7 +149,9 @@ class BottomBarScreen1 extends StatelessWidget {
                           ),
                           IconButton(
                             icon: Icon(Icons.cloud_download),
-                            onPressed: () {},
+                            onPressed: () {
+                            createFileOfPdfUrl();
+                            },
                           )
                         ],
                       ),

@@ -44,7 +44,10 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/mca/
+    - assets/mca/Sem1/
+    - assets/mca/Sem2/
+    - assets/mca/Sem3/
+    - assets/mca/Sem4/
   #   - assets/mca/C01.jpg
   # #  - images/a_dot_ham.jpeg
 
