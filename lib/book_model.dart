@@ -4,8 +4,8 @@ class BookModel{
 
 final String bookCodeNameId;
 final String bookName;
-final String url;
 final String bookCover;
+final String url;
 final String bookPath;
 final int semester;
 
