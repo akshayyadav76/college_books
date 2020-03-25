@@ -25,6 +25,7 @@ int index =0;
           child: Scaffold(
           drawer: AppDrawer(),
           bottomNavigationBar: BottomNavigationBar(
+          
             currentIndex: index,
             onTap: (s){
               setState(() {
@@ -35,7 +36,7 @@ int index =0;
             BottomNavigationBarItem(
                 title: Text("All Books"), icon: Icon(Icons.dashboard)),
             BottomNavigationBarItem(
-                title: Text("Downloaded"), icon: Icon(Icons.dashboard)),
+                title: Text("Downloaded"), icon: Icon(Icons.file_download)),
           ]),
           body:  bottomNavigationScreens[index],
           ),
