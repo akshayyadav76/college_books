@@ -27,14 +27,14 @@ static List<BookModel> mca=[
   bookName: "Data Structure",
   bookCodeNameId: "DS01",
   semester: 01,
-  bookCover: "assets/mca/download.jpg",
+  bookCover: "assets/mca.Sem1/C01.jpg",
   url: "http://download1586.mediafire.com/5bp009xy2kcg/sb2v1cy7lye4q0e/smple1.pdf"),
 
   BookModel(
   bookName: "Operating System",
   bookCodeNameId: "OP01",
   semester: 01,
-  bookCover: "assets/mca/download_2.jpg",
+  bookCover: "assets/mca/C01_large.jpg",
   url: "http://download1586.mediafire.com/5bp009xy2kcg/sb2v1cy7lye4q0e/smple1.pdf"),
 
 ];

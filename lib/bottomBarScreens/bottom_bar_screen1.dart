@@ -92,12 +92,13 @@ class BottomBarScreen1 extends StatelessWidget {
                   children: <Widget>[
                     Container(
                       height: 130,
-                      width: 150,
+                      width: 100,
                       color: Colors.purple,
                       margin: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
                       child: Card(
                         child: Image.asset(
                           data[i].bookCover,
+                          
                           fit: BoxFit.fill,
                         ),
                         elevation: 7,
