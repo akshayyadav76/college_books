@@ -10,7 +10,7 @@ import '../pdf_screen.dart';
 
 String pathPDF = "";
 String corruptedPathPDF = "";
-List<BookModel> data = BookModel.mca;
+List<BookModel> data = BookModel.mca[0];
 
 Future<File> createFileOfPdfUrl() async {
   // final url =
@@ -60,7 +60,6 @@ class BottomBarScreen1 extends StatelessWidget {
                 icon: Icon(Icons.filter_list),
                 itemBuilder: (context) => [
                       PopupMenuItem(
-                      
                         child: PopupMenuButton(
                           padding: EdgeInsets.zero,
                           child: Row(
@@ -69,14 +68,13 @@ class BottomBarScreen1 extends StatelessWidget {
                               Icon(Icons.arrow_right),
                             ],
                           ),
-                          itemBuilder: (context)=>[
-                            PopupMenuItem(
-                              child:Text("Sem 1") ),  PopupMenuItem(
-                              child:Text("Sem 2") ),  PopupMenuItem(
-                              child:Text("Sem 3") ),  PopupMenuItem(
-                              child:Text("Sem 4") ),  PopupMenuItem(
-                              child:Text("Sem 5") ),  PopupMenuItem(
-                              child:Text("Sem 6") ),
+                          itemBuilder: (context) => [
+                            PopupMenuItem(child: Text("Sem 1")),
+                            PopupMenuItem(child: Text("Sem 2")),
+                            PopupMenuItem(child: Text("Sem 3")),
+                            PopupMenuItem(child: Text("Sem 4")),
+                            PopupMenuItem(child: Text("Sem 5")),
+                            PopupMenuItem(child: Text("Sem 6")),
                           ],
                         ),
                       ),
@@ -91,14 +89,13 @@ class BottomBarScreen1 extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Container(
-                      height: 130,
-                      width: 100,
+                      height: 150,
+                      width: 120,
                       color: Colors.purple,
                       margin: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
                       child: Card(
                         child: Image.asset(
                           data[i].bookCover,
-                          
                           fit: BoxFit.fill,
                         ),
                         elevation: 7,
