@@ -3,17 +3,37 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
 
+import 'dart:io';
 
 
 class PdfScreen extends StatefulWidget {
   final String path;
 
-  PdfScreen({Key key, this.path}) : super(key: key);
+  PdfScreen( this.path) ;
 
   _PdfScreenState createState() => _PdfScreenState();
 }
 
 class _PdfScreenState extends State<PdfScreen> with WidgetsBindingObserver {
+
+  String path;
+  @override
+  void initState() {
+         read();
+        super.initState();
+  }
+
+Future<void>read()async{
+ var file= await File(widget.path).readAsBytes();
+
+var getFile = File.fromRawPath(file);
+setState(() {
+  path = getFile.path;
+  print("obddddddddddddddddddddddddddddddddddddddddddddddddddddject");
+});
+}
+
+
   final Completer<PDFViewController> _controller =
       Completer<PDFViewController>();
   int pages = 0;

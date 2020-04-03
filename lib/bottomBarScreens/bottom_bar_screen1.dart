@@ -5,15 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:path_provider/path_provider.dart';
 
-import '../book_model.dart' ;
+import '../book_model.dart';
 import '../pdf_screen.dart';
 import '../database/database_model.dart';
+import 'package:dio/dio.dart';
 
 String pathPDF = "";
 String corruptedPathPDF = "";
-
-
-
 
 class BottomBarScreen1 extends StatefulWidget {
   @override
@@ -21,21 +19,48 @@ class BottomBarScreen1 extends StatefulWidget {
 }
 
 class _BottomBarScreen1State extends State<BottomBarScreen1> {
+  var popSelectedIndex = 0;
+  var indexChange = true;
+  List<BookModel> data = AllBooks().mca[0]; //AllBooks().mca[popSelectedIndex];
+   int actualSize;
+   int totalSize;
 
-  var popSelectedIndex=0;
-  var indexChange= true;
- List<BookModel> data= AllBooks().mca[0];   //AllBooks().mca[popSelectedIndex];
 
-void todo(int index){
+  void todo(int index) {
     data = AllBooks().mca[index];
-}
+  }
+
+
+  // Future<void> createFileOfPdfUrl(BookModel oneBookData) async {
+  //   String dir = (await getApplicationDocumentsDirectory()).path;
+  //   String filePath = '$dir/${oneBookData.bookCodeNameId}.pdf';
+  //   var respons = await Dio().download(oneBookData.url, filePath,
+  //       onReceiveProgress: (actualBytes, totalBytes) {
+  //          setState(() {
+  //            actualSize=actualBytes;
+  //            totalSize=totalBytes;
+  //          });
+  //       });
+
+  //   DatabaseModel.insert("saved", {
+  //     'bookCodeNameId': oneBookData.bookCodeNameId,
+  //     'bookName': oneBookData.bookName,
+  //     'bookCover': oneBookData.bookCover,
+  //     'bookPath': filePath,
+  //     'semester': oneBookData.semester,
+  //   });
+  //   setState(() {
+  //     actualSize =null;
+  //   });
+    
+  // }
 
 Future<void> createFileOfPdfUrl(BookModel oneBookData) async {
   // final url =
   // "https://berlin2017.droidcon.cod.newthinking.net/sites/global.droidcon.cod.newthinking.net/files/media/documents/Flutter%20-%2060FPS%20UI%20of%20the%20future%20%20-%20DroidconDE%2017.pdf";
- 
+
    print("woring");
-   
+
   //final url = "https://pdfkit.org/docs/guide.pdf"; i will use id as big pdf chakck
   // http://download1592.mediafire.com/edcmebg0npwg/2d10fupy1adey1q/blueprint.pdf
   //http://download1586.mediafire.com/fpceelv21zzg/sb2v1cy7lye4q0e/smple1.pdf
@@ -46,10 +71,10 @@ Future<void> createFileOfPdfUrl(BookModel oneBookData) async {
   var response = await request.close();
   var bytes = await consolidateHttpClientResponseBytes(response);
   String dir = (await getApplicationDocumentsDirectory()).path;
-  File file = new File('$dir/${oneBookData.bookCodeNameId}');
+  File file = new File('$dir/${oneBookData.bookCodeNameId}.pdf');
   await file.writeAsBytes(bytes);
 
-  DatabaseModel.insert("saved", 
+  DatabaseModel.insert("saved",
   {
    'bookCodeNameId':oneBookData.bookCodeNameId,
    'bookName':oneBookData.bookName,
@@ -83,7 +108,7 @@ Future<void> createFileOfPdfUrl(BookModel oneBookData) async {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => PdfScreen(path: pathPDF),
+                        builder: (context) => PdfScreen( pathPDF),
                       ),
                     );
                   }
@@ -103,21 +128,38 @@ Future<void> createFileOfPdfUrl(BookModel oneBookData) async {
                             ],
                           ),
                           itemBuilder: (context) => [
-                            PopupMenuItem(child: Text("Sem 1"),value: 0,),
-                            PopupMenuItem(child: Text("Sem 2"),value: 1,),
-                            PopupMenuItem(child: Text("Sem 3"),value: 2,),
-                            PopupMenuItem(child: Text("Sem 4"),value: 3,),
-                            PopupMenuItem(child: Text("Sem 5"),value: 4,),
-                            PopupMenuItem(child: Text("Sem 6"),value: 5,),
+                            PopupMenuItem(
+                              child: Text("Sem 1"),
+                              value: 0,
+                            ),
+                            PopupMenuItem(
+                              child: Text("Sem 2"),
+                              value: 1,
+                            ),
+                            PopupMenuItem(
+                              child: Text("Sem 3"),
+                              value: 2,
+                            ),
+                            PopupMenuItem(
+                              child: Text("Sem 4"),
+                              value: 3,
+                            ),
+                            PopupMenuItem(
+                              child: Text("Sem 5"),
+                              value: 4,
+                            ),
+                            PopupMenuItem(
+                              child: Text("Sem 6"),
+                              value: 5,
+                            ),
                           ],
-                          onSelected: (selectedValue){
-                             todo(selectedValue);
+                          onSelected: (selectedValue) {
+                            todo(selectedValue);
                             setState(() {
-                               print(selectedValue);
+                              print(selectedValue);
                               popSelectedIndex = selectedValue;
-                            print(popSelectedIndex);
+                              print(popSelectedIndex);
                             });
-
                           },
                         ),
                       ),
@@ -162,21 +204,40 @@ Future<void> createFileOfPdfUrl(BookModel oneBookData) async {
                             "Samester: ${data[i].semester}",
                             style: TextStyle(fontSize: 17),
                           ),
-                          IconButton(
-                            icon: Icon(Icons.cloud_download),
-                            onPressed: () {
-                            createFileOfPdfUrl(data[i]).then((res){
-                             showDialog(context:  context,
-                              builder: (va)=>AlertDialog(content: Text("File Downloaded Sucessfully"),
-                              actions: <Widget>[
-                                FlatButton(child:Text("OK"),onPressed: (){
-                                  Navigator.of(context).pop();
-                                },)
+                          Row(
+                            children: <Widget>[
+                              IconButton(
+                                icon: Icon(Icons.cloud_download),
+                                onPressed: () {
+                                  createFileOfPdfUrl(data[i]).then((res) {
+                                    showDialog(
+                                        context: context,
+                                        builder: (va) => AlertDialog(
+                                              content: Text(
+                                                  "File Downloaded Sucessfully"),
+                                              actions: <Widget>[
+                                                FlatButton(
+                                                  child: Text("OK"),
+                                                  onPressed: () {
+                                                    Navigator.of(context).pop();
+                                                  },
+                                                )
+                                              ],
+                                            ));
+                                  }).catchError((err) =>
+                                      print("thie waht case error $err"));
+                                },
+                              ),
+                            actualSize !=null ? Row(
+                                children: <Widget>[
+                                  Text("$actualSize"),
+                                  Text(" / "),
+                                  Text("$totalSize")
                                 ],
-                              )
-                              );
-                            }).catchError((err)=>print("thie waht case error $err"));
-                            },
+                              ):Container(),
+                          
+                             
+                            ],
                           )
                         ],
                       ),

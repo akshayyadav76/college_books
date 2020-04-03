@@ -1,4 +1,4 @@
-package com.example.college_books
+package com.ak.college_books
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity

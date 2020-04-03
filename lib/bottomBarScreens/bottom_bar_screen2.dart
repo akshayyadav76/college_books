@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import '../database/database_model.dart';
 
 import '../pdf_screen.dart';
+import 'dart:io';
+import 'package:path_provider/path_provider.dart';
+import 'package:flutter/services.dart';
 
 Future<List<Map<String, dynamic>>> getSaved() async {
   var list = await DatabaseModel.read("saved");
@@ -11,13 +14,18 @@ Future<List<Map<String, dynamic>>> getSaved() async {
   return list;
 }
 
-class BottomBarScreen2 extends StatelessWidget {
+class BottomBarScreen2 extends StatefulWidget {
+  @override
+  _BottomBarScreen2State createState() => _BottomBarScreen2State();
+}
+
+class _BottomBarScreen2State extends State<BottomBarScreen2> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
       future: getSaved(),
       builder: (context, data) {
-       if (data.hasData) {
+        if (data.hasData) {
           return Column(
             children: <Widget>[
               Row(
@@ -43,10 +51,19 @@ class BottomBarScreen2 extends StatelessWidget {
                     itemCount: data.data.length,
                     itemBuilder: (context, i) {
                       return InkWell(
-                        onTap: () {
+                        onTap: () async {
+
+                          //   String pathfile;
+                          // await  fromAsset(data.data[i]["bookPath"]).then((f){
+                          // setState(() {
+                          //   pathfile = f.path;
+                          // });
+                          // });
+
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) =>
-                                  PdfScreen(path: data.data[i]["bookPath"])));
+                                  PdfScreen(data.data[i]["bookPath"])));
+                          print(data.data[i]["bookPath"]);
                         },
                         hoverColor: Colors.blue,
                         splashColor: Colors.red,
@@ -94,10 +111,36 @@ class BottomBarScreen2 extends StatelessWidget {
               ),
             ],
           );
-        }else{
+        } else {
           return Text("Pehele Download to Karlo, abhi kuch nahi h khali");
         }
       },
     );
   }
+
+  //  Future<File> fromAsset(String path) async {
+  //   // To open from assets, you can copy them to the app storage folder, and the access them "locally"
+  //   Completer<File> completer = Completer();
+
+  //   try {
+    
+  //     File file = File(path);
+  //     // var data = await rootBundle.load(asset);
+  //     // var bytes = data.buffer.asUint8List();
+  //     await file.readAsBytes();
+  //     completer.complete(file);
+  //   } catch (e) {
+  //     throw Exception('Error parsing asset file!');
+  //   }
+  //   return completer.future;
+  // }
+
+  // Future<File> getBook(String name) async {
+  //   final dir = await getApplicationDocumentsDirectory();
+  //   // String path = ;
+  //   File file = File("${dir.path}/name.pdf");
+  //   String content = await file.readAsString();
+  //   print("object");
+  //   print(content);
+  // }
 }

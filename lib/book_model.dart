@@ -51,7 +51,7 @@ class AllBooks {
         bookCover: "assets/mca/Sem1/IT01.jpg",
         semester: 01,
         url:
-            "http://download1586.mediafire.com/5bp009xy2kcg/sb2v1cy7lye4q0e/smple1.pdf",
+            "http://download1076.mediafire.com/fr7n7rwobozg/7m6wlgeku0ahcm6/design+%26+analysis.pdf",
       ),
       BookModel(
         bookCodeNameId: "MF01",
@@ -69,7 +69,7 @@ class AllBooks {
         bookCover: "assets/mca/Sem2/AMC02.jpg",
         semester: 02,
         url:
-            "http://download1586.mediafire.com/5bp009xy2kcg/sb2v1cy7lye4q0e/smple1.pdf",
+            "http://download1076.mediafire.com/h8surtkmpwtg/7m6wlgeku0ahcm6/design+%26+analysis.pdf",
       ),
       BookModel(
         bookCodeNameId: "CON02",
@@ -77,7 +77,7 @@ class AllBooks {
         bookCover: "assets/mca/Sem2/CON02.jpg",
         semester: 02,
         url:
-            "http://download1586.mediafire.com/5bp009xy2kcg/sb2v1cy7lye4q0e/smple1.pdf",
+            "http://download1076.mediafire.com/h8surtkmpwtg/7m6wlgeku0ahcm6/design+%26+analysis.pdf",
       ),
       BookModel(
         bookCodeNameId: "DM02",
