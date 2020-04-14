@@ -31,60 +31,60 @@ class _BottomBarScreen1State extends State<BottomBarScreen1> {
   }
 
 
-  // Future<void> createFileOfPdfUrl(BookModel oneBookData) async {
-  //   String dir = (await getApplicationDocumentsDirectory()).path;
-  //   String filePath = '$dir/${oneBookData.bookCodeNameId}.pdf';
-  //   var respons = await Dio().download(oneBookData.url, filePath,
-  //       onReceiveProgress: (actualBytes, totalBytes) {
-  //          setState(() {
-  //            actualSize=actualBytes;
-  //            totalSize=totalBytes;
-  //          });
-  //       });
+  Future<void> createFileOfPdfUrl(BookModel oneBookData) async {
+    String dir = (await getApplicationDocumentsDirectory()).path;
+    String filePath = '$dir/${oneBookData.bookCodeNameId}.pdf';
+    var respons = await Dio().download(oneBookData.url, filePath,
+        onReceiveProgress: (actualBytes, totalBytes) {
+           setState(() {
+             actualSize=actualBytes;
+             totalSize=totalBytes;
+           });
+        });
 
-  //   DatabaseModel.insert("saved", {
-  //     'bookCodeNameId': oneBookData.bookCodeNameId,
-  //     'bookName': oneBookData.bookName,
-  //     'bookCover': oneBookData.bookCover,
-  //     'bookPath': filePath,
-  //     'semester': oneBookData.semester,
-  //   });
-  //   setState(() {
-  //     actualSize =null;
-  //   });
+    DatabaseModel.insert("saved", {
+      'bookCodeNameId': oneBookData.bookCodeNameId,
+      'bookName': oneBookData.bookName,
+      'bookCover': oneBookData.bookCover,
+      'bookPath': filePath,
+      'semester': oneBookData.semester,
+    });
+    setState(() {
+      actualSize =null;
+    });
     
-  // }
+  }
 
-Future<void> createFileOfPdfUrl(BookModel oneBookData) async {
-  // final url =
-  // "https://berlin2017.droidcon.cod.newthinking.net/sites/global.droidcon.cod.newthinking.net/files/media/documents/Flutter%20-%2060FPS%20UI%20of%20the%20future%20%20-%20DroidconDE%2017.pdf";
+// Future<void> createFileOfPdfUrl(BookModel oneBookData) async {
+//   // final url =
+//   // "https://berlin2017.droidcon.cod.newthinking.net/sites/global.droidcon.cod.newthinking.net/files/media/documents/Flutter%20-%2060FPS%20UI%20of%20the%20future%20%20-%20DroidconDE%2017.pdf";
 
-   print("woring");
+//    print("woring");
 
-  //final url = "https://pdfkit.org/docs/guide.pdf"; i will use id as big pdf chakck
-  // http://download1592.mediafire.com/edcmebg0npwg/2d10fupy1adey1q/blueprint.pdf
-  //http://download1586.mediafire.com/fpceelv21zzg/sb2v1cy7lye4q0e/smple1.pdf
+//   //final url = "https://pdfkit.org/docs/guide.pdf"; i will use id as big pdf chakck
+//   // http://download1592.mediafire.com/edcmebg0npwg/2d10fupy1adey1q/blueprint.pdf
+//   //http://download1586.mediafire.com/fpceelv21zzg/sb2v1cy7lye4q0e/smple1.pdf
 
-  final url = oneBookData.url;
-  //final filename = url.substring(url.lastIndexOf("/") + 1);
-  var request = await HttpClient().getUrl(Uri.parse(url));
-  var response = await request.close();
-  var bytes = await consolidateHttpClientResponseBytes(response);
-  String dir = (await getApplicationDocumentsDirectory()).path;
-  File file = new File('$dir/${oneBookData.bookCodeNameId}.pdf');
-  await file.writeAsBytes(bytes);
+//   final url = oneBookData.url;
+//   //final filename = url.substring(url.lastIndexOf("/") + 1);
+//   var request = await HttpClient().getUrl(Uri.parse(url));
+//   var response = await request.close();
+//   var bytes = await consolidateHttpClientResponseBytes(response);
+//   String dir = (await getApplicationDocumentsDirectory()).path;
+//   File file = new File('$dir/${oneBookData.bookCodeNameId}.pdf');
+//   await file.writeAsBytes(bytes);
 
-  DatabaseModel.insert("saved",
-  {
-   'bookCodeNameId':oneBookData.bookCodeNameId,
-   'bookName':oneBookData.bookName,
-   'bookCover':oneBookData.bookCover,
-   'url':oneBookData.url,
-   'bookPath': file.path,
-   'semester':oneBookData.semester,
-  });
-  //return file;
-}
+//   DatabaseModel.insert("saved",
+//   {
+//    'bookCodeNameId':oneBookData.bookCodeNameId,
+//    'bookName':oneBookData.bookName,
+//    'bookCover':oneBookData.bookCover,
+//    'url':oneBookData.url,
+//    'bookPath': file.path,
+//    'semester':oneBookData.semester,
+//   });
+//   //return file;
+// }
 
   @override
   Widget build(BuildContext context) {

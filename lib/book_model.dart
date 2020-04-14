@@ -69,7 +69,7 @@ class AllBooks {
         bookCover: "assets/mca/Sem2/AMC02.jpg",
         semester: 02,
         url:
-            "http://download1076.mediafire.com/h8surtkmpwtg/7m6wlgeku0ahcm6/design+%26+analysis.pdf",
+            "http://download1082.mediafire.com/m3s587qfc2zg/o74edrcjriax4lt/mb_design+%26+analysis.pdf",
       ),
       BookModel(
         bookCodeNameId: "CON02",
@@ -77,7 +77,7 @@ class AllBooks {
         bookCover: "assets/mca/Sem2/CON02.jpg",
         semester: 02,
         url:
-            "http://download1076.mediafire.com/h8surtkmpwtg/7m6wlgeku0ahcm6/design+%26+analysis.pdf",
+            "http://download1082.mediafire.com/m3s587qfc2zg/o74edrcjriax4lt/mb_design+%26+analysis.pdf",
       ),
       BookModel(
         bookCodeNameId: "DM02",
@@ -85,7 +85,7 @@ class AllBooks {
         bookCover: "assets/mca/Sem2/DM02.jpg",
         semester: 02,
         url:
-            "http://download1586.mediafire.com/5bp009xy2kcg/sb2v1cy7lye4q0e/smple1.pdf",
+            "http://download1082.mediafire.com/m3s587qfc2zg/o74edrcjriax4lt/mb_design+%26+analysis.pdf",
       ),
       BookModel(
         bookCodeNameId: "DS02",
@@ -93,7 +93,7 @@ class AllBooks {
         bookCover: "assets/mca/Sem2/DS02.jpg",
         semester: 02,
         url:
-            "http://download1586.mediafire.com/5bp009xy2kcg/sb2v1cy7lye4q0e/smple1.pdf",
+            "http://download1082.mediafire.com/m3s587qfc2zg/o74edrcjriax4lt/mb_design+%26+analysis.pdf",
       ),
       BookModel(
         bookCodeNameId: "OS02",
@@ -101,7 +101,7 @@ class AllBooks {
         bookCover: "assets/mca/Sem2/OS02.jpg",
         semester: 02,
         url:
-            "http://download1586.mediafire.com/5bp009xy2kcg/sb2v1cy7lye4q0e/smple1.pdf",
+            "http://download1082.mediafire.com/m3s587qfc2zg/o74edrcjriax4lt/mb_design+%26+analysis.pdf",
       ),
     ]
   ];

@@ -9,29 +9,30 @@ import 'dart:io';
 class PdfScreen extends StatefulWidget {
   final String path;
 
-  PdfScreen( this.path) ;
+  PdfScreen( this.path);
 
   _PdfScreenState createState() => _PdfScreenState();
 }
 
 class _PdfScreenState extends State<PdfScreen> with WidgetsBindingObserver {
 
-  String path;
-  @override
-  void initState() {
-         read();
-        super.initState();
-  }
+//   String path2;
+//   @override
+//   void initState() {
+//          read();
+//         super.initState();
+//   }
 
-Future<void>read()async{
- var file= await File(widget.path).readAsBytes();
+// Future<void>read()async{
+//  var file= await File(widget.path).readAsBytes();
 
-var getFile = File.fromRawPath(file);
-setState(() {
-  path = getFile.path;
-  print("obddddddddddddddddddddddddddddddddddddddddddddddddddddject");
-});
-}
+// var getFile = File.fromRawPath(file);
+// setState(() {
+//   print("obddddddddddddddddddddddddddddddddddddddddddddddddddddject");
+//   path2 = getFile.path;
+  
+// });
+// }
 
 
   final Completer<PDFViewController> _controller =
@@ -43,6 +44,7 @@ setState(() {
 //
   
   Widget build(BuildContext context) {
+      print("build");
     return Scaffold(
       appBar: AppBar(
         title: Text("Document"),

@@ -30,9 +30,10 @@ class DatabaseModel{
     return db.query(table);
   }
 
-  static Future<void>delete(String table,String rollno)async{
+  static Future<void>delete(String table,String bookCodeNameId)async{
     final db= await DatabaseModel.myDatabase();
-    db.delete(table,where: "status =?",whereArgs: [rollno]);
+    db.delete(table,where: bookCodeNameId//,whereArgs: [bookId]
+    );
   }
 
 }

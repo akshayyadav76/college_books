@@ -52,14 +52,6 @@ class _BottomBarScreen2State extends State<BottomBarScreen2> {
                     itemBuilder: (context, i) {
                       return InkWell(
                         onTap: () async {
-
-                          //   String pathfile;
-                          // await  fromAsset(data.data[i]["bookPath"]).then((f){
-                          // setState(() {
-                          //   pathfile = f.path;
-                          // });
-                          // });
-
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) =>
                                   PdfScreen(data.data[i]["bookPath"])));
@@ -112,35 +104,10 @@ class _BottomBarScreen2State extends State<BottomBarScreen2> {
             ],
           );
         } else {
-          return Text("Pehele Download to Karlo, abhi kuch nahi h khali");
+          return Text("Pehele Download to Karlo, tabhi to kuch dikhe gaa");
         }
       },
     );
   }
 
-  //  Future<File> fromAsset(String path) async {
-  //   // To open from assets, you can copy them to the app storage folder, and the access them "locally"
-  //   Completer<File> completer = Completer();
-
-  //   try {
-    
-  //     File file = File(path);
-  //     // var data = await rootBundle.load(asset);
-  //     // var bytes = data.buffer.asUint8List();
-  //     await file.readAsBytes();
-  //     completer.complete(file);
-  //   } catch (e) {
-  //     throw Exception('Error parsing asset file!');
-  //   }
-  //   return completer.future;
-  // }
-
-  // Future<File> getBook(String name) async {
-  //   final dir = await getApplicationDocumentsDirectory();
-  //   // String path = ;
-  //   File file = File("${dir.path}/name.pdf");
-  //   String content = await file.readAsString();
-  //   print("object");
-  //   print(content);
-  // }
 }
