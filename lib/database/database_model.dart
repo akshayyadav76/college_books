@@ -32,7 +32,7 @@ class DatabaseModel{
 
   static Future<void>delete(String table,String bookCodeNameId)async{
     final db= await DatabaseModel.myDatabase();
-    db.delete(table,where: bookCodeNameId//,whereArgs: [bookId]
+    db.delete(table,where: "bookCodeNameId =?",whereArgs: [bookCodeNameId]
     );
   }
 

@@ -200,6 +200,7 @@ class _BottomBarScreen1State extends State<BottomBarScreen1> {
                           SizedBox(
                             height: 8,
                           ),
+                          
                           Text(
                             "Samester: ${data[i].semester}",
                             style: TextStyle(fontSize: 17),
