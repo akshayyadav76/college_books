@@ -22,8 +22,10 @@ class _BottomBarScreen1State extends State<BottomBarScreen1> {
   var popSelectedIndex = 0;
   var indexChange = true;
   List<BookModel> data = AllBooks().mca[0]; //AllBooks().mca[popSelectedIndex];
-   int actualSize;
-   int totalSize;
+   double actualSize =00;
+   double totalSize=00;
+   String showMb;
+   bool isFinishDownlaod = false;
 
 
   void todo(int index) {
@@ -37,10 +39,10 @@ class _BottomBarScreen1State extends State<BottomBarScreen1> {
     var respons = await Dio().download(oneBookData.url, filePath,
         onReceiveProgress: (actualBytes, totalBytes) {
            setState(() {
-             actualSize=actualBytes;
-             totalSize=totalBytes;
+             actualSize= actualBytes/1024/1024;
+             totalSize=totalBytes/1024/1024;
            });
-        });
+        },);
 
     DatabaseModel.insert("saved", {
       'bookCodeNameId': oneBookData.bookCodeNameId,
@@ -50,7 +52,7 @@ class _BottomBarScreen1State extends State<BottomBarScreen1> {
       'semester': oneBookData.semester,
     });
     setState(() {
-      actualSize =null;
+      isFinishDownlaod = true;
     });
     
   }
@@ -210,6 +212,9 @@ class _BottomBarScreen1State extends State<BottomBarScreen1> {
                               IconButton(
                                 icon: Icon(Icons.cloud_download),
                                 onPressed: () {
+                                  setState(() {
+                                    showMb = data[i].bookCodeNameId;
+                                  });
                                   createFileOfPdfUrl(data[i]).then((res) {
                                     showDialog(
                                         context: context,
@@ -229,11 +234,12 @@ class _BottomBarScreen1State extends State<BottomBarScreen1> {
                                       print("thie waht case error $err"));
                                 },
                               ),
-                            actualSize !=null ? Row(
+                           isFinishDownlaod ?Container():
+                            showMb == data[i].bookCodeNameId ? Row(
                                 children: <Widget>[
-                                  Text("$actualSize"),
+                                  Text("${actualSize.toStringAsFixed(2)} MB"),
                                   Text(" / "),
-                                  Text("$totalSize")
+                                  Text("${totalSize.toStringAsFixed(2)} MB")
                                 ],
                               ):Container(),
                           

@@ -55,23 +55,27 @@ class _BottomBarScreen2State extends State<BottomBarScreen2> {
                       return Dismissible(
                         key:  ValueKey(data.data[i]["bookCodeNameId"]),
                         background: Container(color: Colors.red,),
-                        onDismissed: (d){
-                          showDialog(context: context,
+                        confirmDismiss: (d)async{
+                          bool value = false;
+                         await showDialog(context: context,
                           builder: (context){
-                            return AlertDialog(content: Text(" Do You Really Want To Delete?"),
+                            return  AlertDialog(content: Text(" Do You Really Want To Delete?"),
                             actions: <Widget>[
                               FlatButton(onPressed: (){ 
                               Navigator.of(context).pop();
-                              
                               }, child: Text("No")),
                               FlatButton(onPressed: (){
                               DatabaseModel.delete("saved", data.data[i]["bookCodeNameId"]);
                                Navigator.of(context).pop();
+                               setState(() {
+                                 value = true;
+                               });
                               }, child: Text("Yes"))
                             ],
                             );
                           }
                           );
+                          return value;
                         },
                                               child: InkWell(
                           onTap: () async {
