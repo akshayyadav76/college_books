@@ -146,14 +146,14 @@ class _BottomBarScreen1State extends State<BottomBarScreen1> {
                               child: Text("Sem 4"),
                               value: 3,
                             ),
-                            PopupMenuItem(
-                              child: Text("Sem 5"),
-                              value: 4,
-                            ),
-                            PopupMenuItem(
-                              child: Text("Sem 6"),
-                              value: 5,
-                            ),
+                            // PopupMenuItem(
+                            //   child: Text("Sem 5"),
+                            //   value: 4,
+                            // ),
+                            // PopupMenuItem(
+                            //   child: Text("Sem 6"),
+                            //   value: 5,
+                            // ),
                           ],
                           onSelected: (selectedValue) {
                             todo(selectedValue);

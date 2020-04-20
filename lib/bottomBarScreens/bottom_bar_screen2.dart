@@ -134,7 +134,7 @@ class _BottomBarScreen2State extends State<BottomBarScreen2> {
             ],
           );
         } else {
-          return Text("Pehele Download to Karlo, tabhi to kuch dikhe gaa");
+          return Center(child: Text("Pehele Download to Karlo, tabhi to kuch dikhe gaa" , style: TextStyle(fontSize: 30),));
         }
       },
     );
