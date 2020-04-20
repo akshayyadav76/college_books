@@ -1,4 +1,4 @@
-#college_books
+# college_books
 
 # An App for TIT College Students..
 ## local Shivani Publications books availble for students to read....
@@ -6,11 +6,11 @@
 
 # MCA
 ## 1st Semester
-<img src = "assets/mca/Sem1/C01.jpg" width = "150" height ="200"></img>
-<img src = "assets/mca/Sem1/CO&AL01.jpg" width = "150" height ="200"></img>
-<img src = "assets/mca/Sem1/CS01.jpg" width = "150" height ="200"></img>
-<img src = "assets/mca/Sem1/IT01.jpg" width = "150" height ="200"></img>
-<img src = "assets/mca/Sem1/MF01.jpg" width = "150" height ="200"></img>
+<img src = "assets/mca/Sem1/C01.jpg" width = "150" height ="200" hspace="10"></img>
+<img src = "assets/mca/Sem1/CO&AL01.jpg" width = "150" height ="200" hspace="10"></img>
+<img src = "assets/mca/Sem1/CS01.jpg" width = "150" height ="200" hspace="10"></img>
+<img src = "assets/mca/Sem1/IT01.jpg" width = "150" height ="200" hspace="10"></img>
+<img src = "assets/mca/Sem1/MF01.jpg" width = "150" height ="200" hspace="10"></img>
 
 
 A few resources to get you started if this is your first Flutter project:
