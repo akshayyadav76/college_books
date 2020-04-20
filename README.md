@@ -1,8 +1,8 @@
 # college_books
 
 # An App for TIT College Students..
-## local Shivani Publications books availble for students to read....
-### Availble Books
+## local Shivani Publications books availble for students to download and read....
+### Available Books
 
 # MCA
 ## 1st Semester
@@ -12,12 +12,26 @@
 <img src = "assets/mca/Sem1/IT01.jpg" width = "150" height ="200" hspace="10"></img>
 <img src = "assets/mca/Sem1/MF01.jpg" width = "150" height ="200" hspace="10"></img>
 
+## 2nd Semester
+<img src = "assets/mca/Sem2/AMC02.jpg" width = "150" height ="200" hspace="10"></img>
+<img src = "assets/mca/Sem2/CON02.jpg" width = "150" height ="200" hspace="10"></img>
+<img src = "assets/mca/Sem2/DM02.jpg" width = "150" height ="200" hspace="10"></img>
+<img src = "assets/mca/Sem2/DS02.jpg" width = "150" height ="200" hspace="10"></img>
+<img src = "assets/mca/Sem2/OS02.jpg" width = "150" height ="200" hspace="10"></img>
 
-A few resources to get you started if this is your first Flutter project:
+## 3rd Semester
+<img src = "assets/mca/Sem3/C++03.jpg" width = "150" height ="200" hspace="10"></img>
+<img src = "assets/mca/Sem3/CN03.jpg" width = "150" height ="200" hspace="10"></img>
+<img src = "assets/mca/Sem3/COOT03.jpg" width = "150" height ="200" hspace="10"></img>
+<img src = "assets/mca/Sem3/SEM03.jpg" width = "150" height ="200" hspace="10"></img>
+<img src = "assets/mca/Sem3/TOC03.jpg" width = "150" height ="200" hspace="10"></img>
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## 4th Semester
+<img src = "assets/mca/Sem4/AI04.jpg" width = "150" height ="200" hspace="10"></img>
+<img src = "assets/mca/Sem4/CG04.jpg" width = "150" height ="200" hspace="10"></img>
+<img src = "assets/mca/Sem4/D&A04.jpg" width = "150" height ="200" hspace="10"></img>
+<img src = "assets/mca/Sem4/ISM04.jpg" width = "150" height ="200" hspace="10"></img>
+<img src = "assets/mca/Sem4/JAVA04.jpg" width = "150" height ="200" hspace="10"></img>
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# Soon more will be add......
+
