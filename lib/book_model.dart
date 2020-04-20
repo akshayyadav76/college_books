@@ -104,5 +104,92 @@ class AllBooks {
             "http://download1082.mediafire.com/m3s587qfc2zg/o74edrcjriax4lt/mb_design+%26+analysis.pdf",
       ),
     ]
+  ,
+   [
+      BookModel(
+        bookCodeNameId: "Cpp",
+        bookName: "Objdect Oriented Methodology & C++",
+        bookCover: "assets/mca/Sem3/C++03.jpg",
+        semester: 03,
+        url:
+            "http://download1082.mediafire.com/m3s587qfc2zg/o74edrcjriax4lt/mb_design+%26+analysis.pdf",
+      ),
+      BookModel(
+        bookCodeNameId: "CN03",
+        bookName: "Computer Networks",
+        bookCover: "assets/mca/Sem3/CN03.jpg",
+        semester: 03,
+        url:
+            "http://download1082.mediafire.com/m3s587qfc2zg/o74edrcjriax4lt/mb_design+%26+analysis.pdf",
+      ),
+      BookModel(
+        bookCodeNameId: "COOT03",
+        bookName: "Computer Oriented Optimization Techniques",
+        bookCover: "assets/mca/Sem3/COOT03.jpg",
+        semester: 03,
+        url:
+            "http://download1082.mediafire.com/m3s587qfc2zg/o74edrcjriax4lt/mb_design+%26+analysis.pdf",
+      ),
+      BookModel(
+        bookCodeNameId: "SEM03",
+        bookName: "Software Engineering Methodologies",
+        bookCover: "assets/mca/Sem3/SEM03.jpg",
+        semester: 03,
+        url:
+            "http://download1082.mediafire.com/m3s587qfc2zg/o74edrcjriax4lt/mb_design+%26+analysis.pdf",
+      ),
+      BookModel(
+        bookCodeNameId: "TOC03",
+        bookName: "Theory of Computation",
+        bookCover: "assets/mca/Sem3/TOC03.jpg",
+        semester: 03,
+        url:
+            "http://download1082.mediafire.com/m3s587qfc2zg/o74edrcjriax4lt/mb_design+%26+analysis.pdf",
+      ),
+    ],
+ [
+      BookModel(
+        bookCodeNameId: "AI04",
+        bookName: "Artificial Intelligence & Applications",
+        bookCover: "assets/mca/Sem4/AI04.jpg",
+        semester: 04,
+        url:
+            "http://download1082.mediafire.com/m3s587qfc2zg/o74edrcjriax4lt/mb_design+%26+analysis.pdf",
+      ),
+      BookModel(
+        bookCodeNameId: "CG04",
+        bookName: "Computer Graphics & Multimedia",
+        bookCover: "assets/mca/Sem4/CG04.jpg",
+        semester: 04,
+        url:
+            "http://download1082.mediafire.com/m3s587qfc2zg/o74edrcjriax4lt/mb_design+%26+analysis.pdf",
+      ),
+      BookModel(
+        bookCodeNameId: "D&A04",
+        bookName: "Design & Analysis of Algorithm",
+        bookCover: "assets/mca/Sem4/D&A04.jpg",
+        semester: 04,
+        url:
+            "http://download1082.mediafire.com/m3s587qfc2zg/o74edrcjriax4lt/mb_design+%26+analysis.pdf",
+      ),
+      BookModel(
+        bookCodeNameId: "ISM04",
+        bookName: "Information Storage & Management",
+        bookCover: "assets/mca/Sem4/ISM04.jpg",
+        semester: 04,
+        url:
+            "http://download1082.mediafire.com/m3s587qfc2zg/o74edrcjriax4lt/mb_design+%26+analysis.pdf",
+      ),
+      BookModel(
+        bookCodeNameId: "JAVA04",
+        bookName: "Java Programming",
+        bookCover: "assets/mca/Sem4/JAVA04.jpg",
+        semester: 04,
+        url:
+            "http://download1082.mediafire.com/m3s587qfc2zg/o74edrcjriax4lt/mb_design+%26+analysis.pdf",
+      ),
+    ]
+
+
   ];
 }
