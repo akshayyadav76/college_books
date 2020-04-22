@@ -171,7 +171,7 @@ class _BottomBarScreen1State extends State<BottomBarScreen1> {
                           data[i].bookCover,
                           fit: BoxFit.fill,
                         ),
-                        elevation: 7,
+                        elevation: 15,
                       ),
                     ),
                     Expanded(
