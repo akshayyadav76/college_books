@@ -205,11 +205,16 @@ class _BottomBarScreen1State extends State<BottomBarScreen1> {
                           
                           Text(
                             "Samester: ${data[i].semester}",
-                            style: TextStyle(fontSize: 17),
+                            style: TextStyle(fontSize: 18,fontWeight: FontWeight.w500),
                           ),
                           Row(
                             children: <Widget>[
-                              IconButton(
+                           data[i].url.isEmpty ? 
+                           Padding(
+                             padding: EdgeInsets.only(top: 15),
+                             child: Text("Not Avaliable yet",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600,
+                             color: Theme.of(context).primaryColor))): 
+                            IconButton(
                                 icon: Icon(Icons.cloud_download),
                                 onPressed: () {
                                   setState(() {

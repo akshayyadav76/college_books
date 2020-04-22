@@ -27,7 +27,7 @@ class AllBooks {
         bookCover: "assets/mca/Sem1/C01.jpg",
         semester: 01,
         url:
-            "http://download1586.mediafire.com/5bp009xy2kcg/sb2v1cy7lye4q0e/smple1.pdf",
+            "",
       ),
       BookModel(
         bookCodeNameId: "CO&AL01",
@@ -35,7 +35,7 @@ class AllBooks {
         bookCover: "assets/mca/Sem1/CO&AL01.jpg",
         semester: 01,
         url:
-            "http://download1586.mediafire.com/5bp009xy2kcg/sb2v1cy7lye4q0e/smple1.pdf",
+            "",
       ),
       BookModel(
         bookCodeNameId: "CS01",
@@ -43,7 +43,7 @@ class AllBooks {
         bookCover: "assets/mca/Sem1/CS01.jpg",
         semester: 01,
         url:
-            "http://download1586.mediafire.com/5bp009xy2kcg/sb2v1cy7lye4q0e/smple1.pdf",
+            "",
       ),
       BookModel(
         bookCodeNameId: "IT01",
@@ -51,7 +51,7 @@ class AllBooks {
         bookCover: "assets/mca/Sem1/IT01.jpg",
         semester: 01,
         url:
-            "http://download1076.mediafire.com/fr7n7rwobozg/7m6wlgeku0ahcm6/design+%26+analysis.pdf",
+            "",
       ),
       BookModel(
         bookCodeNameId: "MF01",
@@ -59,9 +59,10 @@ class AllBooks {
         bookCover: "assets/mca/Sem1/MF01.jpg",
         semester: 01,
         url:
-            "http://download1586.mediafire.com/5bp009xy2kcg/sb2v1cy7lye4q0e/smple1.pdf",
+            "",
       ),
     ],
+
     [
       BookModel(
         bookCodeNameId: "AMC02",
@@ -69,7 +70,7 @@ class AllBooks {
         bookCover: "assets/mca/Sem2/AMC02.jpg",
         semester: 02,
         url:
-            "http://download1082.mediafire.com/m3s587qfc2zg/o74edrcjriax4lt/mb_design+%26+analysis.pdf",
+            "",
       ),
       BookModel(
         bookCodeNameId: "CON02",
@@ -77,7 +78,7 @@ class AllBooks {
         bookCover: "assets/mca/Sem2/CON02.jpg",
         semester: 02,
         url:
-            "http://download1082.mediafire.com/m3s587qfc2zg/o74edrcjriax4lt/mb_design+%26+analysis.pdf",
+            "",
       ),
       BookModel(
         bookCodeNameId: "DM02",
@@ -85,7 +86,7 @@ class AllBooks {
         bookCover: "assets/mca/Sem2/DM02.jpg",
         semester: 02,
         url:
-            "http://download1082.mediafire.com/m3s587qfc2zg/o74edrcjriax4lt/mb_design+%26+analysis.pdf",
+            "",
       ),
       BookModel(
         bookCodeNameId: "DS02",
@@ -93,7 +94,7 @@ class AllBooks {
         bookCover: "assets/mca/Sem2/DS02.jpg",
         semester: 02,
         url:
-            "http://download1082.mediafire.com/m3s587qfc2zg/o74edrcjriax4lt/mb_design+%26+analysis.pdf",
+            "",
       ),
       BookModel(
         bookCodeNameId: "OS02",
@@ -101,18 +102,17 @@ class AllBooks {
         bookCover: "assets/mca/Sem2/OS02.jpg",
         semester: 02,
         url:
-            "http://download1082.mediafire.com/m3s587qfc2zg/o74edrcjriax4lt/mb_design+%26+analysis.pdf",
-      ),
-    ]
-  ,
-   [
+            "",
+      ),],
+
+    [
       BookModel(
         bookCodeNameId: "Cpp",
         bookName: "Objdect Oriented Methodology & C++",
         bookCover: "assets/mca/Sem3/C++03.jpg",
         semester: 03,
         url:
-            "http://download1082.mediafire.com/m3s587qfc2zg/o74edrcjriax4lt/mb_design+%26+analysis.pdf",
+            "",
       ),
       BookModel(
         bookCodeNameId: "CN03",
@@ -120,7 +120,7 @@ class AllBooks {
         bookCover: "assets/mca/Sem3/CN03.jpg",
         semester: 03,
         url:
-            "http://download1082.mediafire.com/m3s587qfc2zg/o74edrcjriax4lt/mb_design+%26+analysis.pdf",
+            "",
       ),
       BookModel(
         bookCodeNameId: "COOT03",
@@ -128,7 +128,7 @@ class AllBooks {
         bookCover: "assets/mca/Sem3/COOT03.jpg",
         semester: 03,
         url:
-            "http://download1082.mediafire.com/m3s587qfc2zg/o74edrcjriax4lt/mb_design+%26+analysis.pdf",
+            "",
       ),
       BookModel(
         bookCodeNameId: "SEM03",
@@ -136,7 +136,7 @@ class AllBooks {
         bookCover: "assets/mca/Sem3/SEM03.jpg",
         semester: 03,
         url:
-            "http://download1082.mediafire.com/m3s587qfc2zg/o74edrcjriax4lt/mb_design+%26+analysis.pdf",
+            "",
       ),
       BookModel(
         bookCodeNameId: "TOC03",
@@ -144,17 +144,17 @@ class AllBooks {
         bookCover: "assets/mca/Sem3/TOC03.jpg",
         semester: 03,
         url:
-            "http://download1082.mediafire.com/m3s587qfc2zg/o74edrcjriax4lt/mb_design+%26+analysis.pdf",
-      ),
-    ],
- [
+            "",
+      ),],
+
+    [
       BookModel(
         bookCodeNameId: "AI04",
         bookName: "Artificial Intelligence & Applications",
         bookCover: "assets/mca/Sem4/AI04.jpg",
         semester: 04,
         url:
-            "http://download1082.mediafire.com/m3s587qfc2zg/o74edrcjriax4lt/mb_design+%26+analysis.pdf",
+            "https://firebasestorage.googleapis.com/v0/b/collegebooks-29b42.appspot.com/o/mca%2Fsem%204%2Fartificial%20interlligence%20%26%20applications.pdf?alt=media&token=3cb3fc50-8341-456a-b8e3-9d1b40d74fd7",
       ),
       BookModel(
         bookCodeNameId: "CG04",
@@ -162,7 +162,7 @@ class AllBooks {
         bookCover: "assets/mca/Sem4/CG04.jpg",
         semester: 04,
         url:
-            "http://download1082.mediafire.com/m3s587qfc2zg/o74edrcjriax4lt/mb_design+%26+analysis.pdf",
+            "https://firebasestorage.googleapis.com/v0/b/collegebooks-29b42.appspot.com/o/mca%2Fsem%204%2Fcomputer%20graphics%20%26%20multimedia.pdf?alt=media&token=fa5a12f1-a845-4cad-bc6c-c1a3c3bfcdc5",
       ),
       BookModel(
         bookCodeNameId: "D&A04",
@@ -170,7 +170,7 @@ class AllBooks {
         bookCover: "assets/mca/Sem4/D&A04.jpg",
         semester: 04,
         url:
-            "http://download1082.mediafire.com/m3s587qfc2zg/o74edrcjriax4lt/mb_design+%26+analysis.pdf",
+            "https://firebasestorage.googleapis.com/v0/b/collegebooks-29b42.appspot.com/o/mca%2Fsem%204%2Fdesign%20%26%20analysis%20of%20algorithm.pdf?alt=media&token=f2f2275a-423e-4756-acc9-3b91bf6b2ecc",
       ),
       BookModel(
         bookCodeNameId: "ISM04",
@@ -178,7 +178,7 @@ class AllBooks {
         bookCover: "assets/mca/Sem4/ISM04.jpg",
         semester: 04,
         url:
-            "http://download1082.mediafire.com/m3s587qfc2zg/o74edrcjriax4lt/mb_design+%26+analysis.pdf",
+            "https://firebasestorage.googleapis.com/v0/b/collegebooks-29b42.appspot.com/o/mca%2Fsem%204%2Finformation%20storage%20%26%20management.pdf?alt=media&token=c2a08f1d-cec2-4c76-8ddf-f458b5ea4f59",
       ),
       BookModel(
         bookCodeNameId: "JAVA04",
@@ -186,10 +186,8 @@ class AllBooks {
         bookCover: "assets/mca/Sem4/JAVA04.jpg",
         semester: 04,
         url:
-            "http://download1082.mediafire.com/m3s587qfc2zg/o74edrcjriax4lt/mb_design+%26+analysis.pdf",
-      ),
-    ]
-
-
-  ];
+            "https://firebasestorage.googleapis.com/v0/b/collegebooks-29b42.appspot.com/o/mca%2Fsem%204%2Fjava%20programming.pdf?alt=media&token=a870d2e2-ee31-4fc9-b6df-0d31531864c0",
+      ),],
+      
+];
 }
