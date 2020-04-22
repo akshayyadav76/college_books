@@ -95,30 +95,16 @@ class _BottomBarScreen1State extends State<BottomBarScreen1> {
         Row(
           children: <Widget>[
             IconButton(
-                icon: Icon(Icons.menu),
+                icon: Icon(Icons.menu,size: 33,),
                 onPressed: () {
                   Scaffold.of(context).openDrawer();
                 }),
             Expanded(
-              child: RaisedButton(
-                child: Text(
-                  "College Books",
-                  style: Theme.of(context).textTheme.title,
-                ),
-                onPressed: () {
-                  if (pathPDF != null) {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => PdfScreen( pathPDF),
-                      ),
-                    );
-                  }
-                },
-              ),
+              child: Text("College Books",style: TextStyle(fontSize: 30,fontWeight: FontWeight.w400),
+              textAlign: TextAlign.center,)
             ),
             PopupMenuButton(
-                icon: Icon(Icons.filter_list),
+                icon: Icon(Icons.filter_list,size: 33,),
                 itemBuilder: (context) => [
                       PopupMenuItem(
                         child: PopupMenuButton(
@@ -224,8 +210,10 @@ class _BottomBarScreen1State extends State<BottomBarScreen1> {
                                     showDialog(
                                         context: context,
                                         builder: (va) => AlertDialog(
-                                              content: Text(
+                                          title: Text(
                                                   "File Downloaded Sucessfully"),
+                                              content: Text(
+                                                  "Check Download Screen"),
                                               actions: <Widget>[
                                                 FlatButton(
                                                   child: Text("OK"),

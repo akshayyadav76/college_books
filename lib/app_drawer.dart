@@ -19,13 +19,23 @@ class AppDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return
     Drawer(
+
      child: Column(
           children: <Widget>[
          Container(
-           margin: EdgeInsets.only(top: 50),
+           margin: EdgeInsets.only(top: 20),
            child: Text("College Books",style: TextStyle(fontSize: 40)),
          ),
+         SizedBox(height: 10,),
+         Text("Version 1.0",style:Theme.of(context).textTheme.title,),
           Divider(),
+
+          ListTile(title: Text("Update App",style: Theme.of(context).textTheme.title,),
+             trailing: IconTheme(data: Theme.of(context).iconTheme, child: Icon(Icons.update)),
+         onTap: () {
+           launch("http://www.mediafire.com/folder/7kolpho52pu4s/college_book_apk");
+         }
+         ),
 
          ListTile(title: Text("Source Code",style: Theme.of(context).textTheme.title,),
              trailing: IconTheme(data: Theme.of(context).iconTheme, child: Icon(Icons.code)),
@@ -54,7 +64,7 @@ class AppDrawer extends StatelessWidget {
             //     launch("https://play.google.com/store/apps/developer?id=com.akshay.quiz_app");
             //   },),
 
-            ListTile(title: Text("Credits & About",style: Theme.of(context).textTheme.title),
+            ListTile(title: Text("About & Contact",style: Theme.of(context).textTheme.title),
               trailing: IconTheme(data: Theme.of(context).iconTheme, child: Icon(Icons.error)),
             onTap: (){
               Navigator.of(context).push(MaterialPageRoute(

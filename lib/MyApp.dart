@@ -23,7 +23,7 @@ int index =0;
   Widget build(BuildContext context) {
     return SafeArea(
           child: Scaffold(
-            backgroundColor: Colors.white,
+           backgroundColor: Colors.white,
           drawer: AppDrawer(),
           bottomNavigationBar: BottomNavigationBar(
           

@@ -5,7 +5,7 @@ import './MyApp.dart';
 void main() {
   runApp( CollegeBooks());
   SystemChrome.setSystemUIOverlayStyle(
-    SystemUiOverlayStyle(statusBarColor: Colors.white,
+    SystemUiOverlayStyle(statusBarBrightness: Brightness.light,
     statusBarIconBrightness: Brightness.dark)
   );
 
@@ -14,12 +14,16 @@ void main() {
 class CollegeBooks extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
+      
       debugShowCheckedModeBanner: false,
+      
+
       theme: ThemeData(
         
         
         primaryColor: Colors.purple,
         primarySwatch: Colors.purple
+        
         
       ),
       
