@@ -95,7 +95,7 @@ class _BottomBarScreen1State extends State<BottomBarScreen1> {
         Row(
           children: <Widget>[
             IconButton(
-                icon: Icon(Icons.menu,size: 33,),
+                icon: Icon(Icons.menu,size: 30,),
                 onPressed: () {
                   Scaffold.of(context).openDrawer();
                 }),
@@ -104,7 +104,7 @@ class _BottomBarScreen1State extends State<BottomBarScreen1> {
               textAlign: TextAlign.center,)
             ),
             PopupMenuButton(
-                icon: Icon(Icons.filter_list,size: 33,),
+                icon: Icon(Icons.filter_list,size: 30,),
                 itemBuilder: (context) => [
                       PopupMenuItem(
                         child: PopupMenuButton(
