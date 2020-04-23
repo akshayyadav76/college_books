@@ -3,29 +3,75 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
 
-
-
 class PdfScreen extends StatefulWidget {
   final String path;
 
-  PdfScreen( this.path);
+  PdfScreen(this.path);
 
   _PdfScreenState createState() => _PdfScreenState();
 }
 
 class _PdfScreenState extends State<PdfScreen> with WidgetsBindingObserver {
-
-  final Completer<PDFViewController> _controller =
-      Completer<PDFViewController>();
+  Completer<PDFViewController> _controller = Completer<PDFViewController>();
   int pages = 0;
   int currentPage = 0;
   bool isReady = false;
   String errorMessage = '';
-  
+  bool nightMode = false;
+  Color modeColor = Colors.black;
+
+  UniqueKey pdfViewerKey = UniqueKey();
+
+  bool stopBuild = true;
+  bool stopBuild2 = false;
+
+  Widget smallButton(String text) {
+    return Container(
+      height: 50,
+      width: 40,
+      child: Center(
+          child: Text(
+        text,
+        style: TextStyle(color: modeColor,  fontWeight: FontWeight.w700),
+        textAlign: TextAlign.center,
+      )),
+      decoration: BoxDecoration(shape: BoxShape.circle),
+    );
+  }
+
   Widget build(BuildContext context) {
-      print("build");
+    print("build");
+    final isLandscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
+    print(isLandscape);
+    if (isLandscape) {
+      if (stopBuild) {
+        setState(() {
+          _controller = Completer<PDFViewController>();
+          print("object if");
+          pdfViewerKey = UniqueKey();
+          stopBuild = false;
+          stopBuild2 = true;
+        });
+      }
+    }
+    if (!isLandscape) {
+      if (stopBuild2) {
+        setState(() {
+          print("object else");
+          _controller = Completer<PDFViewController>();
+          pdfViewerKey = UniqueKey();
+          stopBuild2 = false;
+          stopBuild = true;
+        });
+      }
+    }
+
+    // print(widget.path);
     return SafeArea(
-          child: Scaffold(
+      key: pdfViewerKey,
+      child: Scaffold(
+        resizeToAvoidBottomPadding: false,
         body: Stack(
           children: <Widget>[
             PDFView(
@@ -35,8 +81,8 @@ class _PdfScreenState extends State<PdfScreen> with WidgetsBindingObserver {
               autoSpacing: true,
               pageFling: true,
               defaultPage: currentPage,
-              
-              fitPolicy: FitPolicy.HEIGHT,
+              nightMode: nightMode,
+              fitPolicy: FitPolicy.BOTH,
               onRender: (_pages) {
                 setState(() {
                   pages = _pages;
@@ -73,26 +119,134 @@ class _PdfScreenState extends State<PdfScreen> with WidgetsBindingObserver {
                     : Container()
                 : Center(
                     child: Text(errorMessage),
-                  )
+                  ),
+            Stack(
+              children: <Widget>[
+                Positioned(
+                  top: 1,
+                
+                  child: Container(
+                    height: 40,
+                    width: 80,
+                    child: Center(
+                        child: Text(
+                      "$currentPage / $pages",
+                      style: TextStyle(color:  modeColor, fontWeight: FontWeight.w700),
+                      textAlign: TextAlign.center,
+                    )),
+                    decoration: BoxDecoration(shape: BoxShape.rectangle),
+                  ),
+                ),
+                Positioned(
+                  top: 1,
+                  right: 1,
+                  child: IconButton(icon: Icon(Icons.brightness_auto , color: modeColor,), onPressed: (){
+                    setState(() {
+
+                      nightMode = !nightMode;
+                      nightMode ?modeColor = Colors.white:modeColor = Colors.black;
+                      _controller = Completer<PDFViewController>();
+                      pdfViewerKey = UniqueKey();
+                    });
+                  })
+                ),
+                Positioned(
+                  bottom: 2,
+                  right: 1,
+                  child: FutureBuilder<PDFViewController>(
+                    future: _controller.future,
+                    builder:
+                        (context, AsyncSnapshot<PDFViewController> snapshot) {
+                      if (snapshot.hasData) {
+                        return GestureDetector(
+                            onTap: () {
+                              snapshot.data.setPage(pages);
+                            },
+                            child: smallButton("end"));
+                      }
+                      return Container();
+                    },
+                  ),
+                ),
+                Positioned(
+                  bottom: 2,
+                  right: 45,
+                  child: FutureBuilder<PDFViewController>(
+                    future: _controller.future,
+                    builder:
+                        (context, AsyncSnapshot<PDFViewController> snapshot) {
+                      if (snapshot.hasData) {
+                        return GestureDetector(
+                            onTap: () {
+                              snapshot.data.setPage(pages ~/ 2);
+                            },
+                            child: smallButton("mid"));
+                      }
+                      return Container();
+                    },
+                  ),
+                ),
+                Positioned(
+                  bottom: 2,
+                  right: 90,
+                  child: FutureBuilder<PDFViewController>(
+                    future: _controller.future,
+                    builder:
+                        (context, AsyncSnapshot<PDFViewController> snapshot) {
+                      if (snapshot.hasData) {
+                        return GestureDetector(
+                            onTap: () {
+                              snapshot.data.setPage(0);
+                            },
+                            child: smallButton("start"));
+                      }
+                      return Container();
+                    },
+                  ),
+                ),
+              ],
+            )
           ],
         ),
-        floatingActionButton: FutureBuilder<PDFViewController>(
-          future: _controller.future,
-          builder: (context, AsyncSnapshot<PDFViewController> snapshot) {
-            if (snapshot.hasData) {
-              return FloatingActionButton.extended(
-                label: Text("Go to ${pages ~/ 2}"),
-                onPressed: () async {
-                  await snapshot.data.setPage(pages ~/ 2);
-                },
-              );
-            }
 
-            return Container();
-          },
-        ),
+        //   floatingActionButton: Stack(
+        //     children: <Widget>[
+
+        //  FutureBuilder<PDFViewController>(
+        //     future: _controller.future,
+        //     builder: (context, AsyncSnapshot<PDFViewController> snapshot) {
+        //       if (snapshot.hasData) {
+        //         return FloatingActionButton.extended(
+        //           label: Text("Go to ${pages ~/ 2}"),
+        //           onPressed: () async {
+        //             await snapshot.data.setPage(pages ~/ 2);
+        //           },
+        //         );
+        //       }
+
+        //       return Container();
+        //     },
+        //   ),
+        //   Positioned(
+        //      bottom: 30,
+        //      child:  FutureBuilder<PDFViewController>(
+        //     future: _controller.future,
+        //     builder: (context, AsyncSnapshot<PDFViewController> snapshot) {
+        //       if (snapshot.hasData) {
+        //         return FloatingActionButton.extended(
+        //           label: Text("Go"),
+        //           onPressed: () async {
+        //             await snapshot.data.setPage(pages ~/ 2);
+        //           },
+        //         );
+        //       }
+
+        //       return Container();
+        //     },
+        //   ),)
+        //     ],
+        //   )
       ),
     );
   }
 }
-

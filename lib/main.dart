@@ -5,7 +5,7 @@ import './MyApp.dart';
 void main() {
   runApp( CollegeBooks());
   SystemChrome.setSystemUIOverlayStyle(
-    SystemUiOverlayStyle(statusBarBrightness: Brightness.light,
+    SystemUiOverlayStyle(statusBarColor: Colors.white,
     statusBarIconBrightness: Brightness.dark)
   );
 
