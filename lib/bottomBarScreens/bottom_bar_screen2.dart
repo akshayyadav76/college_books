@@ -1,13 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import '../database/database_model.dart';
-import '../database/database_model.dart';
 
+import '../database/database_model.dart';
 import '../pdf_screen.dart';
-import 'dart:io';
-import 'package:path_provider/path_provider.dart';
-import 'package:flutter/services.dart';
+
 
 Future<List<Map<String, dynamic>>> getSaved() async {
   var list = await DatabaseModel.read("saved");

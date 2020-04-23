@@ -1,12 +1,9 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
 import 'package:path_provider/path_provider.dart';
 
 import '../book_model.dart';
-import '../pdf_screen.dart';
 import '../database/database_model.dart';
 import 'package:dio/dio.dart';
 

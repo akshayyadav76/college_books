@@ -33,7 +33,7 @@ class AppDrawer extends StatelessWidget {
           ListTile(title: Text("Update App",style: Theme.of(context).textTheme.title,),
              trailing: IconTheme(data: Theme.of(context).iconTheme, child: Icon(Icons.update)),
          onTap: () {
-           launch("http://www.mediafire.com/folder/7kolpho52pu4s/college_book_apk");
+           launch("https://drive.google.com/open?id=1yyZKnSLwJCE_u7kPfr6aMSORY-xdCWsy");
          }
          ),
 
