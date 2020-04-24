@@ -55,8 +55,8 @@ class AppDrawer extends StatelessWidget {
             trailing: IconTheme(data: Theme.of(context).iconTheme, child: Icon(Icons.share)),
           onTap: (){
             Share.share("RGPV Syllabus All Shivani Publications Digital Books Download and read"
-            "Download the App Now "
-               "Link-: http://www.mediafire.com/folder/7kolpho52pu4s/college_book_apk",);
+            " Download the App Now "
+               "Link-: https://drive.google.com/open?id=1yyZKnSLwJCE_u7kPfr6aMSORY-xdCWsy",);
           },),
 
             // ListTile(title: Text("Rate on Google play",style: Theme.of(context).textTheme.title,),
