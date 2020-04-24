@@ -2,10 +2,12 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:dio/dio.dart';
+import 'package:connectivity/connectivity.dart';
 
 import '../book_model.dart';
 import '../database/database_model.dart';
-import 'package:dio/dio.dart';
+
 
 String pathPDF = "";
 String corruptedPathPDF = "";
@@ -52,6 +54,28 @@ class _BottomBarScreen1State extends State<BottomBarScreen1> {
       isFinishDownlaod = true;
     });
     
+  }
+
+Future<bool> checkInternet() async {
+    var connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.mobile) {
+      // I am connected to a mobile network.
+      return true;
+    } else if (connectivityResult == ConnectivityResult.wifi) {
+      // I am connected to a wifi network.
+         return true;
+    }else if(connectivityResult == ConnectivityResult.none){
+     var dilog = AlertDialog(content: Text("Please turn on Internet and Restart the App"),
+     );
+
+      showDialog(
+        barrierDismissible: false,
+        context:context,builder: (df){
+        return dilog;
+      } );
+      return false;
+    }
+    return null;
   }
 
 // Future<void> createFileOfPdfUrl(BookModel oneBookData) async {
@@ -198,9 +222,12 @@ class _BottomBarScreen1State extends State<BottomBarScreen1> {
                              child: Text("Not Avaliable yet",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600,
                              color: Theme.of(context).primaryColor))): 
                             IconButton(
-                                icon: Icon(Icons.cloud_download),
+                                icon: Icon(Icons.cloud_download,size: 30,),
                                 onPressed: () {
-                                  setState(() {
+                                  checkInternet().then((connectinvety){
+                                    if(connectinvety){
+                                      print("connected");
+                                       setState(() {
                                     showMb = data[i].bookCodeNameId;
                                   });
                                   createFileOfPdfUrl(data[i]).then((res) {
@@ -222,6 +249,14 @@ class _BottomBarScreen1State extends State<BottomBarScreen1> {
                                             ));
                                   }).catchError((err) =>
                                       print("thie waht case error $err"));
+
+
+                                    }else{
+                                      print("not connected");
+                                    }
+                                  });
+                                
+                                 
                                 },
                               ),
                            isFinishDownlaod ?Container():

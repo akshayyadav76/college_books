@@ -124,7 +124,6 @@ class _PdfScreenState extends State<PdfScreen> with WidgetsBindingObserver {
               children: <Widget>[
                 Positioned(
                   top: 1,
-                
                   child: Container(
                     height: 40,
                     width: 80,
@@ -137,8 +136,7 @@ class _PdfScreenState extends State<PdfScreen> with WidgetsBindingObserver {
                     decoration: BoxDecoration(shape: BoxShape.rectangle),
                   ),
                 ),
-                Positioned(
-                  top: 1,
+                Positioned(top: 1,
                   right: 1,
                   child: IconButton(icon: Icon(Icons.brightness_auto , color: modeColor,), onPressed: (){
                     setState(() {
@@ -150,8 +148,7 @@ class _PdfScreenState extends State<PdfScreen> with WidgetsBindingObserver {
                     });
                   })
                 ),
-                Positioned(
-                  bottom: 2,
+                Positioned(bottom: 2,
                   right: 1,
                   child: FutureBuilder<PDFViewController>(
                     future: _controller.future,
@@ -168,8 +165,7 @@ class _PdfScreenState extends State<PdfScreen> with WidgetsBindingObserver {
                     },
                   ),
                 ),
-                Positioned(
-                  bottom: 2,
+                Positioned(bottom: 2,
                   right: 45,
                   child: FutureBuilder<PDFViewController>(
                     future: _controller.future,
@@ -186,8 +182,7 @@ class _PdfScreenState extends State<PdfScreen> with WidgetsBindingObserver {
                     },
                   ),
                 ),
-                Positioned(
-                  bottom: 2,
+                Positioned(bottom: 2,
                   right: 90,
                   child: FutureBuilder<PDFViewController>(
                     future: _controller.future,
