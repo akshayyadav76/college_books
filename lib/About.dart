@@ -37,7 +37,7 @@ class About extends StatelessWidget {
                         SizedBox(height: 30,),
 
                         Text("well, i'm a little bit lazzy person" 
-                        " i hava't added mca 1st 2nd 3rd and other branches like - b.tech books..."
+                        " i haven't added mca 1st 2nd 3rd and other branches like - b.tech books..."
                         "there only mca 4th sem books avaliable right now but if you want to help me or"
                          " want to part of this project you can contact me at ", textAlign: TextAlign.center,
                         style: TextStyle(fontSize: 25,fontWeight: FontWeight.w400)
