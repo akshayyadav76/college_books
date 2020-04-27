@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:collection';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
@@ -32,7 +33,7 @@ class _PdfScreenState extends State<PdfScreen> with WidgetsBindingObserver {
       child: Center(
           child: Text(
         text,
-        style: TextStyle(color: modeColor,  fontWeight: FontWeight.w700),
+        style: TextStyle(color: modeColor, fontWeight: FontWeight.w700),
         textAlign: TextAlign.center,
       )),
       decoration: BoxDecoration(shape: BoxShape.circle),
@@ -130,73 +131,54 @@ class _PdfScreenState extends State<PdfScreen> with WidgetsBindingObserver {
                     child: Center(
                         child: Text(
                       "$currentPage / $pages",
-                      style: TextStyle(color:  modeColor, fontWeight: FontWeight.w700),
+                      style: TextStyle(
+                          color: modeColor, fontWeight: FontWeight.w700),
                       textAlign: TextAlign.center,
                     )),
                     decoration: BoxDecoration(shape: BoxShape.rectangle),
                   ),
                 ),
-                Positioned(top: 1,
-                  right: 1,
-                  child: IconButton(icon: Icon(Icons.brightness_auto , color: modeColor,), onPressed: (){
-                    setState(() {
-
-                      nightMode = !nightMode;
-                      nightMode ?modeColor = Colors.white:modeColor = Colors.black;
-                      _controller = Completer<PDFViewController>();
-                      pdfViewerKey = UniqueKey();
-                    });
-                  })
-                ),
-                Positioned(bottom: 2,
-                  right: 1,
-                  child: FutureBuilder<PDFViewController>(
-                    future: _controller.future,
-                    builder:
-                        (context, AsyncSnapshot<PDFViewController> snapshot) {
-                      if (snapshot.hasData) {
-                        return GestureDetector(
-                            onTap: () {
-                              snapshot.data.setPage(pages);
+                Positioned(
+                    top: 1,
+                    right: 1,
+                    child: IconButton(
+                        icon: Icon(
+                          Icons.brightness_auto,
+                          color: modeColor,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            nightMode = !nightMode;
+                            nightMode
+                                ? modeColor = Colors.white
+                                : modeColor = Colors.black;
+                            _controller = Completer<PDFViewController>();
+                            pdfViewerKey = UniqueKey();
+                          });
+                        })),
+                Align(
+                  alignment: Alignment.bottomLeft,
+                  child: Container(
+                    height: 5,
+                    child: FutureBuilder<PDFViewController>(
+                      future: _controller.future,
+                      builder:
+                          (context, AsyncSnapshot<PDFViewController> snapshot) {
+                        if (snapshot.hasData) {
+                          return Slider(
+                            value: currentPage.toDouble(),
+                            min: 0,
+                            max: pages.toDouble(),
+                            onChanged: (value) {
+                              setState(() {
+                                snapshot.data.setPage(value.toInt());
+                              });
                             },
-                            child: smallButton("end"));
-                      }
-                      return Container();
-                    },
-                  ),
-                ),
-                Positioned(bottom: 2,
-                  right: 45,
-                  child: FutureBuilder<PDFViewController>(
-                    future: _controller.future,
-                    builder:
-                        (context, AsyncSnapshot<PDFViewController> snapshot) {
-                      if (snapshot.hasData) {
-                        return GestureDetector(
-                            onTap: () {
-                              snapshot.data.setPage(pages ~/ 2);
-                            },
-                            child: smallButton("mid"));
-                      }
-                      return Container();
-                    },
-                  ),
-                ),
-                Positioned(bottom: 2,
-                  right: 90,
-                  child: FutureBuilder<PDFViewController>(
-                    future: _controller.future,
-                    builder:
-                        (context, AsyncSnapshot<PDFViewController> snapshot) {
-                      if (snapshot.hasData) {
-                        return GestureDetector(
-                            onTap: () {
-                              snapshot.data.setPage(0);
-                            },
-                            child: smallButton("start"));
-                      }
-                      return Container();
-                    },
+                          );
+                        }
+                        return Container();
+                      },
+                    ),
                   ),
                 ),
               ],
