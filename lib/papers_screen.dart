@@ -18,7 +18,7 @@ class _PapersScreenState extends State<PapersScreen> {
 
   List<Paper> allpapers = AllPapers().papers[0];
 
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
+  //final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   File file;
 
@@ -76,22 +76,24 @@ class _PapersScreenState extends State<PapersScreen> {
     return SafeArea(
         child: Scaffold(
       backgroundColor: Colors.white,
-      key: _scaffoldKey,
-      drawer: AppDrawer(),
+     // key: _scaffoldKey,
+      //drawer: AppDrawer(),
       body: Stack(
         children: <Widget>[
           Column(
             children: <Widget>[
               Row(
                 children: <Widget>[
-                  IconButton(
-                      icon: Icon(
-                        Icons.menu,
-                        size: 30,
-                      ),
-                      onPressed: () {
-                        _scaffoldKey.currentState.openDrawer();
-                      }),
+                  Container(
+                    // child: IconButton(
+                    //     icon: Icon(
+                    //       Icons.menu,
+                    //       size: 30,
+                    //     ),
+                    //     onPressed: () {
+                    //       _scaffoldKey.currentState.openDrawer();
+                    //     }),
+                  ),
                   Expanded(
                       child: Text(
                     "Papers",
@@ -188,8 +190,8 @@ class _PapersScreenState extends State<PapersScreen> {
                                     deleteCache();
                                   });
                                 });
-                              }else{
-                               print("no connection");
+                              } else {
+                                print("no connection");
                               }
                             });
                           },
