@@ -34,7 +34,7 @@ class _CollegeBooksState extends State<CollegeBooks> {
     _initializeControllerFuture = controller.initialize();
   }
 
-  void doSameting() async {
+  Future<void> doSameting() async {
     try {
       await _initializeControllerFuture;
       final path = join(
@@ -60,13 +60,22 @@ class _CollegeBooksState extends State<CollegeBooks> {
   }
 
   Widget build(BuildContext context) {
-    doSameting();
+    // doSameting();
     print("main method");
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme:
-          ThemeData(primaryColor: Colors.purple, primarySwatch: Colors.purple),
-      home: MyApp(),
+    return FutureBuilder(
+      future: doSameting(),
+      builder: (context, data) {
+        if (data.connectionState == ConnectionState.done) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(
+                primaryColor: Colors.purple, primarySwatch: Colors.purple),
+            home: MyApp(),
+          );
+        }else if(data.connectionState == ConnectionState.waiting){
+          return Center(child: CircularProgressIndicator());
+        }
+      },
     );
   }
 }

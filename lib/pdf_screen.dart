@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'dart:collection';
+
 
 import 'package:flutter/material.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
@@ -159,7 +159,7 @@ class _PdfScreenState extends State<PdfScreen> with WidgetsBindingObserver {
                 Align(
                   alignment: Alignment.bottomLeft,
                   child: Container(
-                    height: 5,
+                    height: 10,
                     child: FutureBuilder<PDFViewController>(
                       future: _controller.future,
                       builder:

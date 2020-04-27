@@ -21,7 +21,7 @@ class DatabaseModel{
 
   static Future<void>insert(String table,Map<String,dynamic>data)async{
     final db= await DatabaseModel.myDatabase();
-    print("data base instiialrdf ${db}");
+   //print("data base instiialrdf ${db}");
     db.insert(table, data);
   }
 

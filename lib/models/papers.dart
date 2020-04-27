@@ -34,7 +34,7 @@ class AllPapers{
       ),
        Paper(
         paparName: "Information Storage & Management",
-        year: "dec 2019c",
+        year: "dec 2019",
         semester: 4,
         url: 'http://www.rgpvonline.com/papers/mca/mca-402-information-storage-and-management-nov-2019.pdf'
       ),

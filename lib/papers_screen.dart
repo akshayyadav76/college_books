@@ -6,7 +6,7 @@ import 'package:connectivity/connectivity.dart';
 import './pdf_screen.dart';
 
 import './models/papers.dart';
-import './app_drawer.dart';
+
 
 class PapersScreen extends StatefulWidget {
   @override
