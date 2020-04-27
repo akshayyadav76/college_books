@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'package:share/share.dart';
+import './papers_screen.dart';
 import './About.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -34,6 +35,16 @@ class AppDrawer extends StatelessWidget {
              trailing: IconTheme(data: Theme.of(context).iconTheme, child: Icon(Icons.update)),
          onTap: () {
            launch("https://drive.google.com/open?id=1yyZKnSLwJCE_u7kPfr6aMSORY-xdCWsy");
+         }
+         ),
+
+          ListTile(title: Text("Papers",style: Theme.of(context).textTheme.title,),
+             trailing: IconTheme(data: Theme.of(context).iconTheme, child: Icon(Icons.pageview)),
+         onTap: () {
+            Navigator.of(context).push(MaterialPageRoute(
+            builder: (context){
+              return PapersScreen();
+            }));
          }
          ),
 
