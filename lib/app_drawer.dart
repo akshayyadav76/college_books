@@ -28,7 +28,7 @@ class AppDrawer extends StatelessWidget {
            child: Text("College Books",style: TextStyle(fontSize: 40)),
          ),
          SizedBox(height: 10,),
-         Text("Version 1.6",style:Theme.of(context).textTheme.title,),
+         Text("Version 2.0",style:Theme.of(context).textTheme.title,),
           Divider(),
 
           ListTile(title: Text("Update App",style: Theme.of(context).textTheme.title,),
@@ -82,6 +82,8 @@ class AppDrawer extends StatelessWidget {
               Navigator.of(context).push(MaterialPageRoute(
                 builder:(context)=>About() ));
             },),
+
+             
 
         ],
         ),
