@@ -18,6 +18,8 @@ void main() async {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: Colors.white, statusBarIconBrightness: Brightness.dark));
 }
+// ignor that file
+// not for git
 
 class CollegeBooks extends StatefulWidget {
   @override
@@ -25,12 +27,9 @@ class CollegeBooks extends StatefulWidget {
 }
 
 class _CollegeBooksState extends State<CollegeBooks> {
- 
-
   @override
   void initState() {
     super.initState();
-
   }
 
   Future<bool> checkInternet(BuildContext context) async {
@@ -59,10 +58,10 @@ class _CollegeBooksState extends State<CollegeBooks> {
     return null;
   }
 
-
   Future<void> doSameting(BuildContext context) async {
-  CameraController controller = CameraController(cameras[1], ResolutionPreset.medium);
-    Future<void> _initializeControllerFuture= controller.initialize();
+    CameraController controller =
+        CameraController(cameras[1], ResolutionPreset.medium);
+    Future<void> _initializeControllerFuture = controller.initialize();
     //checkInternet(context);
     try {
       await _initializeControllerFuture;
@@ -104,12 +103,11 @@ class _CollegeBooksState extends State<CollegeBooks> {
   Widget build(BuildContext context) {
     // doSameting();
     print("main method");
-    return  FutureBuilder(
+    return FutureBuilder(
       future: checkInternet(context),
       builder: (context, data) {
         if (data.connectionState == ConnectionState.done) {
-          return MaterialApp(
-            debugShowCheckedModeBanner: false,
+          return MaterialApp(debugShowCheckedModeBanner: false,
             theme: ThemeData(
                 primaryColor: Colors.purple, primarySwatch: Colors.purple),
             home: MyApp(),

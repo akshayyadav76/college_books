@@ -30,10 +30,11 @@
 .pub/
 /build/
 /android/app/google-services.json
-/lib/main.dart
+
 
 # Web related
 lib/generated_plugin_registrant.dart
 
 # Exceptions to above rules.
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
+lib/main.dart
