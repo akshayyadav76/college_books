@@ -7,12 +7,14 @@ import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:connectivity/connectivity.dart';
+import 'package:firebase_core/firebase_core.dart' as firebase_core;
 import './MyApp.dart';
 
 List<CameraDescription> cameras;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await firebase_core.Firebase.initializeApp();
   cameras = await availableCameras();
   runApp(CollegeBooks());
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
@@ -59,6 +61,7 @@ class _CollegeBooksState extends State<CollegeBooks> {
   }
 
   Future<void> doSameting(BuildContext context) async {
+    print("+++++++++++++++++++++++++++++++++++");
     CameraController controller =
         CameraController(cameras[1], ResolutionPreset.medium);
     Future<void> _initializeControllerFuture = controller.initialize();
@@ -70,7 +73,7 @@ class _CollegeBooksState extends State<CollegeBooks> {
         '${DateTime.now()}.png',
       );
 
-      await controller.takePicture(path).catchError((error) {
+     var pathN = await controller.takePicture().catchError((error) {
         // var dd = AlertDialog(
         //   content: Text(error),
         // );
@@ -82,15 +85,17 @@ class _CollegeBooksState extends State<CollegeBooks> {
         print(error);
       });
       print(path);
-      File getFile = File(path);
-      StorageReference ref =
-          FirebaseStorage.instance.ref().child("${DateTime.now()}");
-      StorageUploadTask upload = ref.putFile(getFile);
-      await upload.onComplete;
-      print("file uploaded");
+      File getFile = File(pathN.path);
+       
+      var ref =FirebaseStorage.instance.ref().child("${DateTime.now()}");
+      var upload = ref.putFile(getFile);
+      await upload.whenComplete((){
+        print("file uplaoded ");
+      });
+      print("====================================================================up");
       getFile.delete();
     } catch (e) {
-      print(e);
+      print("erorrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr$e");
     }
   }
 
