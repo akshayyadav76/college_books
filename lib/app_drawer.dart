@@ -65,6 +65,7 @@ class AppDrawer extends StatelessWidget {
           ListTile(title: Text("Share the App",style: Theme.of(context).textTheme.title,),
             trailing: IconTheme(data: Theme.of(context).iconTheme, child: Icon(Icons.share)),
           onTap: (){
+            
             Share.share("RGPV Syllabus All Shivani Publications Digital Books Download and read"
             " Download the App Now "
                "Link-: https://drive.google.com/open?id=1yyZKnSLwJCE_u7kPfr6aMSORY-xdCWsy",);
