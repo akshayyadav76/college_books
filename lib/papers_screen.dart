@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_cache_store/flutter_cache_store.dart';
 import 'package:connectivity/connectivity.dart';
 import './pdf_screen.dart';
+import 'data/models/papers.dart';
 
-import './models/papers.dart';
+
 
 
 class PapersScreen extends StatefulWidget {
