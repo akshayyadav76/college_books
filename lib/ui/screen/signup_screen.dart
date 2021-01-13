@@ -1,10 +1,14 @@
-import 'package:college_books/data/provider/data_provider.dart';
+
+import 'package:college_books/constant/globals.dart';
+import 'package:college_books/data/provider/auth.dart';
 import 'package:college_books/ui/widgets/button_widget.dart';
 import 'package:college_books/ui/widgets/textfield_widget.dart';
+import 'package:college_books/ui/widgets/wave_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import '../globals.dart';
+
 import 'login_screen.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -47,26 +51,32 @@ class _SignUpScreenState extends State<SignUpScreen> {
             Stack(
               children: [
                 Container(
-                  height: keyboardOpen ? 100 : size.height - 450,
-                  color: Global.mediumBlue,
+                  height: keyboardOpen ? size.height*0.1 : size.height *0.2,
+                  //color: Global.mediumBlue,
+                  decoration: BoxDecoration(
+                          color: Global.mediumBlue,
+                          borderRadius: BorderRadius.only(bottomRight: Radius.circular(200),
+                          bottomLeft: Radius.circular(200), ),
+                          ),
+
                 ),
-                AnimatedPositioned(
-                  duration: Duration(milliseconds: 500),
-                  curve: Curves.easeOutQuad,
-                  top: keyboardOpen ? -size.height / 3.7 : -70.0,
-                  child: WaveWidget(
-                    size: size,
-                    yOffset: size.height / 3.0,
-                    color: Global.white,
-                  ),
-                ),
+                // AnimatedPositioned(
+                //   duration: Duration(milliseconds: 500),
+                //   curve: Curves.easeOutQuad,
+                //   top: keyboardOpen ? -size.height / 3.7 : -70.0,
+                //   child: WaveWidget(
+                //     size: size,
+                //     yOffset: size.height / 3.0,
+                //     color: Global.white,
+                //   ),
+                // ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 50.0),
+                  padding:  keyboardOpen?EdgeInsets.only(top: 15): EdgeInsets.only(top: 40.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Text(
-                        'Jobs Local',
+                        'College Books',
                         style: TextStyle(
                           color: Global.white,
                           fontSize: 40.0,
@@ -85,64 +95,24 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   shrinkWrap: true,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(
-                          left: 30.0, right: 30.0, top: 0.0),
-                      child: Column(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 30),
+                      child:
+                       Column(
                         mainAxisAlignment: MainAxisAlignment.end,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Container(
-                            width: double.infinity,
-                            child: Text(
-                              "Create An Account",
-                              style: TextStyle(
-                                  fontSize: 25.0, fontWeight: FontWeight.bold),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              GestureDetector(
-                                child: ButtonWidget(
-                                  title: "As a Job Seeker",
-                                  hasBorder: jobSekker,
-                                ),
-                                onTap: () {
-                                  setState(() {
-                                    jobSekker = false;
-                                    company = true;
-                                    text = "PERSONAL";
-                                  });
-                                },
-                              ),
-                              GestureDetector(
-                                child: ButtonWidget(
-                                  title: "As a Company",
-                                  hasBorder: company,
-                                ),
-                                onTap: () {
-                                  setState(() {
-                                    jobSekker = true;
-                                    company = false;
-                                    text = "COMPANY";
-                                  });
-                                },
-                              ),
-                            ],
-                          ),
+                          SizedBox(height: 15,),
+                          Text("Create An Account",
+                                        style: TextStyle(
+                                            fontSize: 25.0,
+                                            fontWeight: FontWeight.bold,
+                                            color: Global.mediumBlue)),
+                        
                           SizedBox(
                             height: 5,
                           ),
-                          Container(
-                            width: double.infinity,
-                            child: Text(
-                              "$text INFORMATION",
-                              style: TextStyle(
-                                  fontSize: 20.0, fontWeight: FontWeight.bold),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
+                          
                           // Text("s In",style: TextStyle(fontSize: 25.0,fontWeight: FontWeight.bold,color: Global.mediumBlue)),
                           SizedBox(height: 25),
                           TextFieldWidget(
@@ -205,7 +175,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: <Widget>[
-                              Consumer<HomeProvider>(
+                              Consumer<Auth>(
                                 builder: (context, obj, child) =>
                                     TextFieldWidget(
                                   validate: (String value) {
@@ -216,7 +186,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   },
                                   //controller: passController,
                                   hintText: 'Password',
-                                  obscureText: obj.isVisible ? false : true,
+                                  obscureText:  true,
                                   prefixIconData: Icons.lock_outline,
                                   suffixIconData: GestureDetector(
                                     onTap: () {
@@ -261,7 +231,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   isLoading = true;
                                 });
                                 final msg = await context
-                                    .read<DataProvider>()
+                                    .read<Auth>()
                                     .resgisterUser(
                                         firstName: firstController.text,
                                         lastName: lastController.text,

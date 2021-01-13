@@ -1,12 +1,16 @@
 import 'dart:async';
 
+import 'package:college_books/data/database/database_model.dart';
+import 'package:college_books/data/models/book_model.dart';
+
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:dio/dio.dart';
 import 'package:connectivity/connectivity.dart';
 
-import '../book_model.dart';
-import '../database/database_model.dart';
+
+
+
 
 
 String pathPDF = "";

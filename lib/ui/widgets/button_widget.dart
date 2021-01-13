@@ -1,6 +1,7 @@
+import 'package:college_books/constant/globals.dart';
 import 'package:flutter/material.dart';
 
-import '../globals.dart';
+
 
 
 class ButtonWidget extends StatelessWidget {
@@ -17,7 +18,7 @@ class ButtonWidget extends StatelessWidget {
       child: Ink(
         decoration: BoxDecoration(
           color: hasBorder ? Global.white : Global.mediumBlue,
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(20),
           border: hasBorder
               ? Border.all(
                   color: Global.mediumBlue,
@@ -30,7 +31,7 @@ class ButtonWidget extends StatelessWidget {
            icon ==null ?SizedBox.shrink(): Image.asset(icon,width: 50,height: 45,),
             Expanded(
               child: InkWell(
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(20),
                 child: Container(
                   padding: EdgeInsets.all(10),
                   height: 45.0,

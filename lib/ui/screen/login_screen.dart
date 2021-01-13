@@ -1,10 +1,16 @@
 
+import 'package:college_books/constant/globals.dart';
+import 'package:college_books/data/provider/auth.dart';
 import 'package:college_books/ui/widgets/button_widget.dart';
+import 'package:college_books/ui/widgets/textfield_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 
-import '../globals.dart';
+
+import 'MyApp.dart';
+import 'forgot_pass_screen.dart';
 import 'signup_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -21,6 +27,8 @@ class _LoginScreenState extends State<LoginScreen> {
   bool isLoading = false;
   bool rememberMe = false;
   bool passwordOcuredText = true;
+    bool jobSekker = false;
+  bool company = true;
 
   @override
   void dispose() {
@@ -43,6 +51,7 @@ class _LoginScreenState extends State<LoginScreen> {
     // final model = Provider.of<HomeProvider>(context);
 
     return Scaffold(
+      backgroundColor: Colors.white,
       body: 
                Stack(
                 children: [
@@ -50,26 +59,32 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: [
                       Stack(children: <Widget>[
                         Container(
-                          height: keyboardOpen ? 100 : size.height * 0.2,
+                          height: keyboardOpen ? size.height *0.1 : size.height * 0.2,
+                         
+                          clipBehavior: Clip.antiAliasWithSaveLayer,
+                          decoration: BoxDecoration(
                           color: Global.mediumBlue,
-                        ),
-                        AnimatedPositioned(
-                          duration: Duration(milliseconds: 500),
-                          curve: Curves.easeOutQuad,
-                          top: keyboardOpen ? -size.height / 5.9 : 0.0,
-                          child: WaveWidget(
-                            size: size,
-                            yOffset: size.height / 5.9,
-                            color: Global.white,
+                          borderRadius: BorderRadius.only(bottomRight: Radius.circular(200),
+                          bottomLeft: Radius.circular(200), ),
                           ),
                         ),
+                        // AnimatedPositioned(
+                        //   duration: Duration(milliseconds: 500),
+                        //   curve: Curves.linear,
+                        //   top: keyboardOpen ? -size.height / 5.9 : 0.0,
+                        //   child: WaveWidget(
+                        //     size: size,
+                        //     yOffset: size.height / 5.9,
+                        //     color: Global.white,
+                        //   ),
+                        // ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 40.0),
+                          padding: keyboardOpen?EdgeInsets.only(top: 15): EdgeInsets.only(top: 40.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               Text(
-                                'Jobs Local',
+                                'College Books',
                                 style: TextStyle(
                                   color: Global.white,
                                   fontSize: 40.0,
@@ -86,6 +101,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           child: ListView(
                             shrinkWrap: true,
                             children: [
+                           
                               Padding(
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 30.0),
@@ -93,6 +109,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
+                                    SizedBox(height: 15,),
                                     Text("Log In",
                                         style: TextStyle(
                                             fontSize: 25.0,
@@ -124,7 +141,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.end,
                                       children: <Widget>[
-                                        Consumer<HomeProvider>(
+                                        Consumer<Auth>(
                                           builder: (context, obj, child) =>
                                               TextFieldWidget(
                                             validate: (String value) {
@@ -208,7 +225,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                           var password = passController.text;
                                           print("data $email");
                                           var msg = await context
-                                              .read<DataProvider>()
+                                              .read<Auth>()
                                               .login(
                                                   email: email,
                                                   password: password,
@@ -222,7 +239,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                                 context,
                                                 MaterialPageRoute(
                                                     builder: (context) =>
-                                                        Master()));
+                                                        MyApp()));
                                           } else {
                                             setState(() {
                                               isLoading = false;
@@ -264,7 +281,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    SignUpScreen()));
+                                                    MyApp()));
                                       },
                                     ),
                                     SizedBox(

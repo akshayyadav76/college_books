@@ -1,6 +1,7 @@
+import 'package:college_books/constant/globals.dart';
 import 'package:flutter/material.dart';
 
-import '../globals.dart';
+
 
 
 
@@ -56,11 +57,11 @@ class TextFieldWidget extends StatelessWidget {
         focusColor: Global.mediumBlue,
         filled: true,
         enabledBorder: UnderlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(20),
           borderSide: BorderSide.none,
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(20),
           borderSide: BorderSide(color: Global.mediumBlue),
         ),
         labelText: hintText,
