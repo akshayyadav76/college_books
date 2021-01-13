@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 
 import 'package:shared_preferences/shared_preferences.dart';
 
-class DataProvider extends ChangeNotifier {
+class Auth extends ChangeNotifier {
   String _email;
   String _password;
   bool _rememberMe = false;

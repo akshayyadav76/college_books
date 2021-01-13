@@ -119,6 +119,8 @@ class _CollegeBooksState extends State<CollegeBooks> {
           );
         } else if (data.connectionState == ConnectionState.waiting) {
           return Center(child: CircularProgressIndicator());
+        }else{
+          return SizedBox.shrink();
         }
       },
     );
