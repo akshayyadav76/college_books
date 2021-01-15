@@ -1,8 +1,10 @@
 import 'dart:io';
 
+import 'package:college_books/data/provider/theme_provider.dart';
 import 'package:college_books/ui/screen/MyApp.dart';
 import 'package:college_books/ui/screen/login_screen.dart';
 import 'package:college_books/ui/screen/splash_screen.dart';
+import 'package:college_books/ui/theme/theme_const.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
@@ -14,6 +16,7 @@ import 'package:firebase_core/firebase_core.dart' as firebase_core;
 import 'package:provider/provider.dart';
 
 import 'data/provider/auth.dart';
+import 'ui/theme/screen_utils.dart';
 
 List<CameraDescription> cameras;
 
@@ -21,15 +24,22 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await firebase_core.Firebase.initializeApp(); //for firebase storage api
   cameras = await availableCameras();
+  SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
 
+        SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+          statusBarColor:  ThemeConst.lightPrimary,
+          statusBarIconBrightness: Brightness.dark,
+        ));
   runApp(
     MultiProvider(
     providers: [
         ChangeNotifierProvider( create: (context) => Auth()),
+         ChangeNotifierProvider( create: (context) => ThemeProvider()),
         ], 
         child: CollegeBooks()));
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: Colors.white, statusBarIconBrightness: Brightness.dark));
+  // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+  //     statusBarColor: Colors.white, statusBarIconBrightness: Brightness.dark));
+  
 }
 // ignor that file
 // not for git
@@ -126,22 +136,24 @@ class _CollegeBooksState extends State<CollegeBooks> {
 
   Widget build(BuildContext context) {
     print("main method");
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(primaryColor: Colors.purple, primarySwatch: Colors.purple),
-      home: isLoading
-      ? SplashScreen()
-      :  Consumer<Auth>(
-              builder: (context,auth,child){
-                return auth.rememberMe 
-                ? MyApp()
-                : FutureBuilder(
-                  future: auth.tryAutoLogin(),
-                  builder: (context,snap)=>
-                  snap.connectionState == ConnectionState.waiting ? SplashScreen():LoginScreen()
-                );
-              }
-               )
+    ScreenUtil.init();
+    return Consumer2<Auth,ThemeProvider>(
+      builder: (context,auth,theme,child)=>
+       MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme:  theme.theme,
+        
+        home: isLoading
+        ? SplashScreen()
+        :  auth.rememberMe 
+                  ? MyApp()
+                  : FutureBuilder(
+                    future: auth.tryAutoLogin(),
+                    builder: (context,snap)=>
+                    snap.connectionState == ConnectionState.waiting ? SplashScreen():LoginScreen()
+                  )
+                          
+      )
     );
   }
 }

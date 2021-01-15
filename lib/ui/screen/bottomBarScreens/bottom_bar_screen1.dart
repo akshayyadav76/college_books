@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:dio/dio.dart';
 import 'package:connectivity/connectivity.dart';
+import '../../theme/extention.dart';
 
 
 
@@ -120,41 +121,45 @@ Future<bool> checkInternet() async {
         Row(
           children: <Widget>[
             IconButton(
-                icon: Icon(Icons.menu,size: 30,),
+                icon: Icon(Icons.menu,size: 15.h, color: Theme.of(context).accentColor,),
                 onPressed: () {
                   Scaffold.of(context).openDrawer();
                 }),
             Expanded(
-              child: Text("College Books",style: TextStyle(fontSize: 30,fontWeight: FontWeight.w400),
+              child: Text("College Books",style: TextStyle(fontSize: 30.sp,fontWeight: FontWeight.w400,
+              color: Theme.of(context).accentColor),
               textAlign: TextAlign.center,)
             ),
             PopupMenuButton(
-                icon: Icon(Icons.filter_list,size: 30,),
+              color: Theme.of(context).primaryColor,
+                icon: Icon(Icons.filter_list,size: 15.h,color: Theme.of(context).accentColor),
                 itemBuilder: (context) => [
                       PopupMenuItem(
+                        
                         child: PopupMenuButton(
+                          color: Theme.of(context).primaryColor,
                           padding: EdgeInsets.zero,
                           child: Row(
                             children: <Widget>[
-                              Text("MCA"),
-                              Icon(Icons.arrow_right),
+                              Text("MCA",style: TextStyle( color: Theme.of(context).accentColor),),
+                              Icon(Icons.arrow_right, color: Theme.of(context).accentColor,),
                             ],
                           ),
                           itemBuilder: (context) => [
                             PopupMenuItem(
-                              child: Text("Sem 1"),
+                              child: Text("Sem 1",style: TextStyle(color: Theme.of(context).accentColor),),
                               value: 0,
                             ),
                             PopupMenuItem(
-                              child: Text("Sem 2"),
+                              child: Text("Sem 2",style: TextStyle(color: Theme.of(context).accentColor),),
                               value: 1,
                             ),
                             PopupMenuItem(
-                              child: Text("Sem 3"),
+                              child: Text("Sem 3",style: TextStyle(color: Theme.of(context).accentColor),),
                               value: 2,
                             ),
                             PopupMenuItem(
-                              child: Text("Sem 4"),
+                              child: Text("Sem 4",style: TextStyle(color: Theme.of(context).accentColor),),
                               value: 3,
                             ),
                             // PopupMenuItem(
@@ -187,10 +192,10 @@ Future<bool> checkInternet() async {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Container(
-                      height: 150,
-                      width: 120,
-                      color: Colors.purple,
-                      margin: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                      height: 70.h,
+                      width: 130.w,
+                      color:  Theme.of(context).accentColor,
+                      margin: EdgeInsets.symmetric(horizontal: 8.h, vertical: 8.w),
                       child: Card(
                         child: Image.asset(
                           data[i].bookCover,
@@ -204,65 +209,72 @@ Future<bool> checkInternet() async {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           SizedBox(
-                            height: 5,
+                            height: 5.h,
                           ),
                           Text(
                             data[i].bookName,
-                            style: Theme.of(context).textTheme.title,
+                            style: TextStyle(fontSize: 20.sp,fontWeight: FontWeight.w500,
+                            color: Theme.of(context).accentColor),
                           ),
                           SizedBox(
-                            height: 8,
+                            height: 5.h,
                           ),
                           
                           Text(
                             "Samester: ${data[i].semester}",
-                            style: TextStyle(fontSize: 18,fontWeight: FontWeight.w500),
+                            style: TextStyle(fontSize: 20.sp,fontWeight: FontWeight.w500,
+                            color: Theme.of(context).accentColor
+                            ),
                           ),
                           Row(
                             children: <Widget>[
                            data[i].url.isEmpty ? 
                            Padding(
-                             padding: EdgeInsets.only(top: 15),
-                             child: Text("Not Avaliable yet",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600,
-                             color: Theme.of(context).primaryColor))): 
-                            IconButton(
-                                icon: Icon(Icons.cloud_download,size: 30,),
-                                onPressed: () {
-                                  checkInternet().then((connectinvety){
-                                    if(connectinvety){
-                                      print("connected");
-                                       setState(() {
-                                    showMb = data[i].bookCodeNameId;
-                                  });
-                                  createFileOfPdfUrl(data[i]).then((res) {
-                                    showDialog(
-                                        context: context,
-                                        builder: (va) => AlertDialog(
-                                          title: Text(
-                                                  "File Downloaded Sucessfully"),
-                                              content: Text(
-                                                  "Check Download Screen"),
-                                              actions: <Widget>[
-                                                FlatButton(
-                                                  child: Text("OK"),
-                                                  onPressed: () {
-                                                    Navigator.of(context).pop();
-                                                  },
-                                                )
-                                              ],
-                                            ));
-                                  }).catchError((err) =>
-                                      print("thie waht case error $err"));
+                             padding: EdgeInsets.only(top: 10.h),
+                             child: Text("Not Avaliable yet",style:
+                              TextStyle(fontSize: 20.sp,fontWeight: FontWeight.w600,
+                             color:  Theme.of(context).accentColor))): 
+                            Padding(
+                              padding:  EdgeInsets.only(top: 10.h),
+                              child: IconButton(
+                                  icon: Icon(Icons.cloud_download,size: 17.h,),
+                                  onPressed: () {
+                                    checkInternet().then((connectinvety){
+                                      if(connectinvety){
+                                        print("connected");
+                                         setState(() {
+                                      showMb = data[i].bookCodeNameId;
+                                    });
+                                    createFileOfPdfUrl(data[i]).then((res) {
+                                      showDialog(
+                                          context: context,
+                                          builder: (va) => AlertDialog(
+                                            title: Text(
+                                                    "File Downloaded Sucessfully"),
+                                                content: Text(
+                                                    "Check Download Screen"),
+                                                actions: <Widget>[
+                                                  FlatButton(
+                                                    child: Text("OK"),
+                                                    onPressed: () {
+                                                      Navigator.of(context).pop();
+                                                    },
+                                                  )
+                                                ],
+                                              ));
+                                    }).catchError((err) =>
+                                        print("thie waht case error $err"));
 
 
-                                    }else{
-                                      print("not connected");
-                                    }
-                                  });
-                                
-                                 
-                                },
-                              ),
+                                      }else{
+                                        print("not connected");
+                                      }
+                                    });
+                                  
+                                   
+                                  },
+                                ),
+                            ),
                            isFinishDownlaod ?Container():
                             showMb == data[i].bookCodeNameId ? Row(
                                 children: <Widget>[

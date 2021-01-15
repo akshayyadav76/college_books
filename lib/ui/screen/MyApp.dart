@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import './bottomBarScreens/bottom_bar_screen1.dart';
 import './bottomBarScreens/bottom_bar_screen2.dart';
+import '../theme/extention.dart';
 
 class MyApp extends StatefulWidget {
   _MyAppState createState() => _MyAppState();
@@ -24,10 +25,13 @@ int index =0;
   Widget build(BuildContext context) {
     return SafeArea(
           child: Scaffold(
-           backgroundColor: Colors.white,
+           
           drawer: AppDrawer(),
           bottomNavigationBar: BottomNavigationBar(
-          
+          fixedColor: Theme.of(context).accentColor,unselectedItemColor: Theme.of(context).accentColor,
+          selectedLabelStyle: TextStyle(fontSize: 20.sp,color: Theme.of(context).accentColor),
+          unselectedLabelStyle: TextStyle(fontSize: 15.sp,color: Theme.of(context).accentColor),
+          backgroundColor: Theme.of(context).primaryColor,
             currentIndex: index,
             onTap: (s){
               setState(() {
@@ -36,9 +40,10 @@ int index =0;
             },
             items: [
             BottomNavigationBarItem(
-                title: Text("All Books"), icon: Icon(Icons.dashboard)),
+              
+                label: "All Books", icon: Icon(Icons.dashboard,color: Theme.of(context).accentColor,)),
             BottomNavigationBarItem(
-                title: Text("Downloaded"), icon: Icon(Icons.file_download)),
+                label: "Downloaded", icon: Icon(Icons.file_download,color: Theme.of(context).accentColor,)),
           ]),
           body:  bottomNavigationScreens[index],
           ),
