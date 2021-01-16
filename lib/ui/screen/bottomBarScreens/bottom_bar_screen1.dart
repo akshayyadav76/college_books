@@ -193,7 +193,7 @@ Future<bool> checkInternet() async {
                   children: <Widget>[
                     Container(
                       height: 70.h,
-                      width: 130.w,
+                      width: 125.w,
                       color:  Theme.of(context).accentColor,
                       margin: EdgeInsets.symmetric(horizontal: 8.h, vertical: 8.w),
                       child: Card(
@@ -227,62 +227,81 @@ Future<bool> checkInternet() async {
                             ),
                           ),
                           Row(
+                            crossAxisAlignment: CrossAxisAlignment.end,
                             children: <Widget>[
                            data[i].url.isEmpty ? 
                            Padding(
                              padding: EdgeInsets.only(top: 10.h),
                              child: Text("Not Avaliable yet",style:
-                              TextStyle(fontSize: 20.sp,fontWeight: FontWeight.w600,
+                              TextStyle(fontSize: 20.sp,fontWeight: FontWeight.w500,
                              color:  Theme.of(context).accentColor))): 
-                            Padding(
-                              padding:  EdgeInsets.only(top: 10.h),
-                              child: IconButton(
-                                  icon: Icon(Icons.cloud_download,size: 17.h,),
-                                  onPressed: () {
-                                    checkInternet().then((connectinvety){
-                                      if(connectinvety){
-                                        print("connected");
-                                         setState(() {
-                                      showMb = data[i].bookCodeNameId;
-                                    });
-                                    createFileOfPdfUrl(data[i]).then((res) {
-                                      showDialog(
-                                          context: context,
-                                          builder: (va) => AlertDialog(
-                                            title: Text(
-                                                    "File Downloaded Sucessfully"),
-                                                content: Text(
-                                                    "Check Download Screen"),
-                                                actions: <Widget>[
-                                                  FlatButton(
-                                                    child: Text("OK"),
-                                                    onPressed: () {
-                                                      Navigator.of(context).pop();
-                                                    },
-                                                  )
-                                                ],
-                                              ));
-                                    }).catchError((err) =>
-                                        print("thie waht case error $err"));
+                            Container(
+                              color: Colors.red,
+                              child: Padding(
+                                padding:  EdgeInsets.only(top: 10.h),
+                                child: IconButton(
+                                  padding: EdgeInsets.zero,
+                                  alignment: Alignment.bottomCenter,
+                                    icon: Icon(Icons.cloud_download,size: 17.h,),
+                                    onPressed: () {
+                                      checkInternet().then((connectinvety){
+                                        if(connectinvety){
+                                          print("connected");
+                                           setState(() {
+                                        showMb = data[i].bookCodeNameId;
+                                      });
+                                      createFileOfPdfUrl(data[i]).then((res) {
+                                        showDialog(
+                                            context: context,
+                                            builder: (va) => AlertDialog(
+                                              title: Text(
+                                                      "File Downloaded Sucessfully"),
+                                                  content: Text(
+                                                      "Check Download Screen"),
+                                                  actions: <Widget>[
+                                                    FlatButton(
+                                                      child: Text("OK"),
+                                                      onPressed: () {
+                                                        Navigator.of(context).pop();
+                                                      },
+                                                    )
+                                                  ],
+                                                ));
+                                      }).catchError((err) =>
+                                          print("thie waht case error $err"));
 
 
-                                      }else{
-                                        print("not connected");
-                                      }
-                                    });
-                                  
-                                   
-                                  },
-                                ),
+                                        }else{
+                                          print("not connected");
+                                        }
+                                      });
+                                    
+                                     
+                                    },
+                                  ),
+                              ),
                             ),
-                           isFinishDownlaod ?Container():
-                            showMb == data[i].bookCodeNameId ? Row(
-                                children: <Widget>[
-                                  Text("${actualSize.toStringAsFixed(2)} MB"),
-                                  Text(" / "),
-                                  Text("${totalSize.toStringAsFixed(2)} MB")
-                                ],
-                              ):Container(),
+                           isFinishDownlaod 
+                           ? Container()
+                           : showMb == data[i].bookCodeNameId ?  Padding(
+                             padding:  EdgeInsets.only(bottom:3.h),
+                             child: Row(
+                                    children: <Widget>[
+                                      Text("${actualSize.toStringAsFixed(2)} MB",
+                                      style: TextStyle(fontSize: 18.sp,fontWeight: FontWeight.w500,
+                              color: Theme.of(context).accentColor
+                              ),),
+                                      Text(" / ",style: TextStyle(fontSize: 22.sp,fontWeight: FontWeight.w500,
+                              color: Theme.of(context).accentColor
+                              ),),
+                                      Text("${totalSize.toStringAsFixed(2)} MB",
+                                      style: TextStyle(fontSize: 18.sp,fontWeight: FontWeight.w500,
+                              color: Theme.of(context).accentColor
+                              ),)
+                                    ],
+                                  ),
+                           )
+                           :Container(),
                           
                              
                             ],

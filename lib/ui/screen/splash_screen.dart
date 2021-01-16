@@ -29,14 +29,14 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    SystemChrome.setEnabledSystemUIOverlays([]);
+    //SystemChrome.setEnabledSystemUIOverlays([]);
     //startTimeout();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).primaryColor,
+     // backgroundColor: Theme.of(context).primaryColor,
       body: Container(
         margin: EdgeInsets.only(left: 40.0, right: 40.0),
         child: Center(
@@ -56,7 +56,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   top: 15.0,
                 ),
                 child: Text(
-                  "Jobs Local",
+                  "College Books",
                   style: TextStyle(
                     fontSize: 25.0,
                     fontWeight: FontWeight.w700,

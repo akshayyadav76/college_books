@@ -1,5 +1,6 @@
 
 import 'package:college_books/ui/screen/papers_screen.dart';
+import 'package:college_books/ui/widgets/textfield_widget.dart';
 import 'package:college_books/ui/widgets/theme_container.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -103,6 +104,64 @@ Color baseColor = Color(0xFFF2F2F2);
               //   onTap: (){
               //     launch("https://play.google.com/store/apps/developer?id=com.akshay.quiz_app");
               //   },),
+
+               ListTile(title: Text("FeedBack",style: Theme.of(context).textTheme.headline6),
+                trailing: IconTheme(data: Theme.of(context).iconTheme, child: Icon(Icons.feedback,color: Theme.of(context).accentColor,)),
+              onTap: (){
+                Navigator.of(context).pop();
+                showModalBottomSheet(
+                  backgroundColor: Theme.of(context).primaryColor,
+                  isScrollControlled: true,
+                  
+                  shape:  RoundedRectangleBorder(
+                 borderRadius: BorderRadius.circular(10.0),
+               ),
+                  context: context,
+                  builder:(context)=> Container(
+                  //height: 300.h,
+                  padding: EdgeInsets.all(8.0),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text("FeedBack",style:TextStyle(fontSize: 10.h),),
+                      SizedBox(height: 15,),
+                      TextFieldWidget(
+                        intialValue: "Tab here to add snapshot",
+                        prefixIconData: null,
+                        obscureText: false,
+                      ),
+                      SizedBox(height: 15,),
+                       Padding(
+                         padding: EdgeInsets.only(bottom:  MediaQuery.of(context).viewInsets.bottom,),
+                         child: Row(
+                            children: [
+                               Expanded(
+                                 child: TextFieldWidget(
+                                       obscureText: false,
+                                       hintText: "your issue",
+                                     ),     
+                               ),
+                               IconButton(icon: Icon(Icons.send),onPressed: (){
+
+                               },)
+                            ],
+                          ),
+                       ),
+                      
+
+
+                    ],
+                  ),
+                ),
+                );
+                // Scaffold.of(context).showBottomSheet(
+                  
+                //   (s,)=>);
+              },),
 
               ListTile(title: Text("About & Contact",style: Theme.of(context).textTheme.headline6),
                 trailing: IconTheme(data: Theme.of(context).iconTheme, child: Icon(Icons.error,color: Theme.of(context).accentColor,)),

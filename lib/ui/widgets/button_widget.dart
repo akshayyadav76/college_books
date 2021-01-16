@@ -1,5 +1,6 @@
 import 'package:college_books/constant/globals.dart';
 import 'package:flutter/material.dart';
+import '../theme/extention.dart';
 
 
 
@@ -17,14 +18,13 @@ class ButtonWidget extends StatelessWidget {
     return Material(
       child: Ink(
         decoration: BoxDecoration(
-          color: hasBorder ? Global.white : Global.mediumBlue,
+          color: Theme.of(context).primaryColor,
           borderRadius: BorderRadius.circular(20),
-          border: hasBorder
-              ? Border.all(
-                  color: Global.mediumBlue,
+          border: Border.all(
+                  color: Theme.of(context).accentColor,
                   width: 1.0,
                 )
-              : Border.fromBorderSide(BorderSide.none),
+             // : Border.fromBorderSide(BorderSide.none),
         ),
         child: Row(
           children: [
@@ -34,14 +34,14 @@ class ButtonWidget extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20),
                 child: Container(
                   padding: EdgeInsets.all(10),
-                  height: 45.0,
+                  height: 20.0.h,
                   child: Center(
                     child: Text(
                       title,
                       style: TextStyle(
-                        color: hasBorder ? Global.mediumBlue : Global.white,
+                        color: hasBorder ? Theme.of(context).accentColor : Theme.of(context).accentColor,
                         fontWeight: FontWeight.w600,
-                        fontSize: 16.0,
+                        fontSize: 18.0.sp,
                       ),
                     ),
                   ),

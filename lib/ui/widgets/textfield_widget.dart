@@ -1,6 +1,6 @@
 import 'package:college_books/constant/globals.dart';
 import 'package:flutter/material.dart';
-
+import '../theme/extention.dart';
 
 
 
@@ -40,35 +40,50 @@ class TextFieldWidget extends StatelessWidget {
     return TextFormField(
       onTap: onTap,
       focusNode: focusNode,
+      
       maxLines: maxLine,
       maxLength: maxLength,
       controller: controller,
+      
       initialValue: intialValue,
       onChanged: onChanged,
       validator: validate,
       obscureText: obscureText,
-      cursorColor: Global.mediumBlue,
+      cursorColor: Theme.of(context).primaryColor,
       style: TextStyle(
-        color: Global.mediumBlue,
+        color: Theme.of(context).primaryColor,
         fontSize: 14.0,
       ),
       decoration: InputDecoration(
-        labelStyle: TextStyle(color: Global.mediumBlue),
-        focusColor: Global.mediumBlue,
+        hintText: hintText,
+        hintStyle: TextStyle(color: Theme.of(context).primaryColor),
+        fillColor: Theme.of(context).accentColor,
+        labelStyle: TextStyle(color: Theme.of(context).accentColor,),
+        focusColor: Theme.of(context).accentColor,
+        disabledBorder:  OutlineInputBorder(
+          borderRadius: BorderRadius.circular(20),
+          borderSide: BorderSide(color: Theme.of(context).accentColor,),
+        ),
+        border:  OutlineInputBorder(
+          borderRadius: BorderRadius.circular(20),
+          borderSide: BorderSide(color: Theme.of(context).accentColor,),
+        ),
         filled: true,
         enabledBorder: UnderlineInputBorder(
           borderRadius: BorderRadius.circular(20),
           borderSide: BorderSide.none,
+          
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20),
-          borderSide: BorderSide(color: Global.mediumBlue),
+          borderSide: BorderSide(color: Theme.of(context).accentColor,),
         ),
-        labelText: hintText,
+        //labelText: hintText,
+        
         prefixIcon: Icon(
           prefixIconData,
-          size: 18,
-          color: Global.mediumBlue,
+          size: 12.h,
+          color: Theme.of(context).primaryColor,
         ),
         suffixIcon:suffixIconData
       ),

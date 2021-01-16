@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:college_books/data/database/database_model.dart';
-
 import 'package:flutter/material.dart';
 
 import '../pdf_screen.dart';
+import '../../theme/extention.dart';
 
 
 
@@ -24,6 +24,7 @@ class BottomBarScreen2 extends StatefulWidget {
 class _BottomBarScreen2State extends State<BottomBarScreen2> {
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return FutureBuilder(
       future: getSaved(),
       builder: (context, data) {
@@ -33,19 +34,15 @@ class _BottomBarScreen2State extends State<BottomBarScreen2> {
               Row(
                 children: <Widget>[
                   IconButton(
-                      icon: Icon(
-                        Icons.menu,
-                        size: 30,
-                      ),
+                     icon: Icon(Icons.menu,size: 15.h, color: Theme.of(context).accentColor,),
                       onPressed: () {
                         Scaffold.of(context).openDrawer();
                       }),
                   Expanded(
-                      child: Text(
-                    "College Books",
-                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.w400),
-                    textAlign: TextAlign.center,
-                  )),
+                 child: Text("College Books",style: TextStyle(fontSize: 30.sp,fontWeight: FontWeight.w400,
+              color: Theme.of(context).accentColor),
+              textAlign: TextAlign.center,)
+            ),
                 ],
               ),
               Expanded(
@@ -93,46 +90,55 @@ class _BottomBarScreen2State extends State<BottomBarScreen2> {
                                     PdfScreen(data.data[i]["bookPath"])));
                             print(data.data[i]["bookPath"]);
                           },
-                          splashColor: Colors.purple,
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Container(
-                                height: 150,
-                                width: 120,
-                                color: Colors.purple,
-                                margin: EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 8),
-                                child: Card(
-                                  
-                                  child: Image.asset(
-                                    data.data[i]["bookCover"],
-                                    fit: BoxFit.fill,
+                          splashColor: Theme.of(context).primaryColor,
+                          child: Container(
+                            width: size.width,
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Container(
+                                  height: 70.h,
+                                  width: 125.w,
+                                  color: Theme.of(context).accentColor,
+                                  margin: EdgeInsets.symmetric(
+                                      horizontal: 8.h, vertical: 8.w),
+                                  child: Card(
+                                    
+                                    child: Image.asset(
+                                      data.data[i]["bookCover"],
+                                      fit: BoxFit.fill,
+                                    ),
+                                    elevation: 15,
                                   ),
-                                  elevation: 15,
                                 ),
-                              ),
-                              Expanded(
-                                  child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  Text(
-                                    data.data[i]['bookName'],
-                                    style: Theme.of(context).textTheme.title,
-                                  ),
-                                  SizedBox(
-                                    height: 8,
-                                  ),
-                                  Text(
-                                    "Samester: ${data.data[i]['semester']}",
-                                    style: TextStyle(fontSize: 17),
-                                  ),
-                                ],
-                              )),
-                            ],
+                               Expanded(
+                                      child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      SizedBox(
+                                        height: 5.h,
+                                      ),
+                                       Text(
+                                          data.data[i]['bookName'],
+                                          style: TextStyle(fontSize: 20.sp,fontWeight: FontWeight.w500,
+                            color: Theme.of(context).accentColor
+                            ),
+                                        
+                                      ),
+                                      SizedBox(
+                                        height: 8,
+                                      ),
+                                      Text(
+                                        "Samester: ${data.data[i]['semester']}",
+                                        style: TextStyle(fontSize: 20.sp,fontWeight: FontWeight.w500,
+                            color: Theme.of(context).accentColor
+                            ),
+                                      ),
+                                    ],
+                                  )
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       );
@@ -142,11 +148,13 @@ class _BottomBarScreen2State extends State<BottomBarScreen2> {
           );
         } else {
           return Center(
-              child: Text(
-                
-            "Pehele Download to Karlo, tabhi to kuch dikhe gaa :)",
-            style: TextStyle(fontSize: 30),
-          ));
+              child: Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Text(         
+            "You haven't download any books yet :)",
+            style: TextStyle(fontSize: 30.sp,color: Theme.of(context).accentColor),
+          ),
+              ));
         }
       },
     );

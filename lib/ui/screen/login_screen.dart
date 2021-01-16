@@ -12,6 +12,7 @@ import 'package:provider/provider.dart';
 import 'MyApp.dart';
 import 'forgot_pass_screen.dart';
 import 'signup_screen.dart';
+import '../theme/extention.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -51,9 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
     // final model = Provider.of<HomeProvider>(context);
 
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: 
-               Stack(
+      body: Stack(
                 children: [
                   Column(
                     children: [
@@ -63,7 +62,7 @@ class _LoginScreenState extends State<LoginScreen> {
                          
                           clipBehavior: Clip.antiAliasWithSaveLayer,
                           decoration: BoxDecoration(
-                          color: Global.mediumBlue,
+                          color: Theme.of(context).primaryColor,
                           borderRadius: BorderRadius.only(bottomRight: Radius.circular(200),
                           bottomLeft: Radius.circular(200), ),
                           ),
@@ -86,8 +85,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               Text(
                                 'College Books',
                                 style: TextStyle(
-                                  color: Global.white,
-                                  fontSize: 40.0,
+                                  color: Theme.of(context).accentColor,
+                                  fontSize: 40.0.sp,
                                   fontWeight: FontWeight.w900,
                                 ),
                               ),
@@ -103,19 +102,19 @@ class _LoginScreenState extends State<LoginScreen> {
                             children: [
                            
                               Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 30.0),
+                                padding:  EdgeInsets.symmetric(
+                                    horizontal: 15.0.h),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
-                                    SizedBox(height: 15,),
+                                    SizedBox(height: 10.h,),
                                     Text("Log In",
                                         style: TextStyle(
-                                            fontSize: 25.0,
+                                            fontSize: 30.0.sp,
                                             fontWeight: FontWeight.bold,
-                                            color: Global.mediumBlue)),
-                                    SizedBox(height: 25),
+                                            color: Theme.of(context).accentColor)),
+                                    SizedBox(height: 10.h),
                                     TextFieldWidget(
                                       validate: (String value) {
                                         if (value.isEmpty ||
@@ -135,7 +134,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       // },
                                     ),
                                     SizedBox(
-                                      height: 10.0,
+                                      height: 5.0.h,
                                     ),
                                     Column(
                                       crossAxisAlignment:
@@ -167,8 +166,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                                 passwordOcuredText
                                                     ? Icons.visibility_off
                                                     : Icons.visibility,
-                                                size: 18,
-                                                color: Global.mediumBlue,
+                                                size: 12.h,
+                                                color: Theme.of(context).primaryColor,
                                               ),
                                             ),
                                           ),
@@ -176,26 +175,31 @@ class _LoginScreenState extends State<LoginScreen> {
                                         SizedBox(
                                           height: 5.0,
                                         ),
-                                        CheckboxListTile(
-                                          dense: true,
-                                          value: rememberMe,
-                                          onChanged: (value) {
-                                            setState(() {
-                                              rememberMe = value;
-                                            });
-                                          },
-                                          title: Text("Remember me",
-                                              style: TextStyle(
-                                                  fontSize: 15.0,
-                                                  color: Global.mediumBlue)),
-                                          controlAffinity:
-                                              ListTileControlAffinity.leading,
+                                        Theme(
+                                          data: ThemeData(unselectedWidgetColor: Theme.of(context).accentColor),
+                                          child: CheckboxListTile( 
+                                            activeColor: Theme.of(context).accentColor,
+                                            dense: true,
+                                            value: rememberMe,
+                                            checkColor: Theme.of(context).primaryColor,
+                                            onChanged: (value) {
+                                              setState(() {
+                                                rememberMe = value;
+                                              });
+                                            },
+                                            title: Text("Remember me",
+                                                style: TextStyle(
+                                                    fontSize: 19.0.sp,
+                                                    color: Theme.of(context).accentColor)),
+                                            controlAffinity:
+                                                ListTileControlAffinity.leading,
+                                          ),
                                         ),
                                         GestureDetector(
                                           child: Text(
                                             'Forgot password?',
                                             style: TextStyle(
-                                              color: Global.mediumBlue,
+                                              color: Theme.of(context).accentColor,
                                             ),
                                           ),
                                           onTap: () {
@@ -209,7 +213,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       ],
                                     ),
                                     SizedBox(
-                                      height: 20.0,
+                                      height: 15.0.h,
                                     ),
                                     ButtonWidget(
                                       title: 'Login',
