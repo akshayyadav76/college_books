@@ -1,10 +1,14 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:college_books/constant/endpoints.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:path/path.dart';
+import 'package:dio/dio.dart';
+
 
 class Auth extends ChangeNotifier {
   String _email;
@@ -115,5 +119,50 @@ class Auth extends ChangeNotifier {
     print("value $_rememberMe");
   } //
 
+
+Future<void>firebaseChat({String msg,String name,String dateTime})async{
+  final url = "https://collegebooks-29b42.firebaseio.com/chats.json";
+  final body={
+    "msg":msg,
+    'name':name,
+    'dataTime':dateTime,
+  };
+
+  try{
+    final response =await http.post(url,body:json.encode(body));
+    if(response.statusCode ==200){
+      print("submit");
+    }else{
+      print("error status code ${response.statusCode}");
+    }
+  }catch(e){
+    print("exceptin i firevase chate $e");
+  }
+}
+
+Future<String>feedBack({String filePath,String issue,String email,String dateTime})async{
+   String fileName = basename(filePath);
+   String res ="";
+final url ="";
+
+   try {
+      FormData formData = new FormData.fromMap({
+            "issue": issue,
+            "email":email,
+            "dateTime":dateTime,
+            "snapshot": await MultipartFile.fromFile(filePath, filename: fileName),
+            });
+      Response response = await Dio().post(url,data: formData);
+      if(response.statusCode ==200){
+        res = response.data;
+      }else{
+        print("error ststus code ${response.statusCode}");
+      }
+      return res;
+    } catch (e) {
+            print("expectation Caugch: $e");
+          }
+
+}
 
 }

@@ -1,11 +1,16 @@
 
+import 'dart:io';
+
+import 'package:college_books/constant/globals.dart';
 import 'package:college_books/ui/screen/papers_screen.dart';
+import 'package:college_books/ui/widgets/feedback.dart';
 import 'package:college_books/ui/widgets/textfield_widget.dart';
 import 'package:college_books/ui/widgets/theme_container.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'package:share/share.dart';
+
 
 import './About.dart';
 import '../theme/extention.dart';
@@ -117,46 +122,7 @@ Color baseColor = Color(0xFFF2F2F2);
                  borderRadius: BorderRadius.circular(10.0),
                ),
                   context: context,
-                  builder:(context)=> Container(
-                  //height: 300.h,
-                  padding: EdgeInsets.all(8.0),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text("FeedBack",style:TextStyle(fontSize: 10.h),),
-                      SizedBox(height: 15,),
-                      TextFieldWidget(
-                        intialValue: "Tab here to add snapshot",
-                        prefixIconData: null,
-                        obscureText: false,
-                      ),
-                      SizedBox(height: 15,),
-                       Padding(
-                         padding: EdgeInsets.only(bottom:  MediaQuery.of(context).viewInsets.bottom,),
-                         child: Row(
-                            children: [
-                               Expanded(
-                                 child: TextFieldWidget(
-                                       obscureText: false,
-                                       hintText: "your issue",
-                                     ),     
-                               ),
-                               IconButton(icon: Icon(Icons.send),onPressed: (){
-
-                               },)
-                            ],
-                          ),
-                       ),
-                      
-
-
-                    ],
-                  ),
-                ),
+                  builder:(context)=> FeedBack(),
                 );
                 // Scaffold.of(context).showBottomSheet(
                   

@@ -1,3 +1,4 @@
+import 'package:college_books/ui/screen/chat_screen.dart';
 import 'package:college_books/ui/widgets/app_drawer.dart';
 import 'package:flutter/material.dart';
 
@@ -25,7 +26,13 @@ int index =0;
   Widget build(BuildContext context) {
     return SafeArea(
           child: Scaffold(
-           
+           floatingActionButton: FloatingActionButton(
+
+             child: Icon(Icons.chat),
+             onPressed:(){
+               Navigator.push(context,MaterialPageRoute(builder: (context)=>ChatScreen()));
+             }
+           ),
           drawer: AppDrawer(),
           bottomNavigationBar: BottomNavigationBar(
           fixedColor: Theme.of(context).accentColor,unselectedItemColor: Theme.of(context).accentColor,
