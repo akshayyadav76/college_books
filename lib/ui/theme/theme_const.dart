@@ -3,7 +3,7 @@ import './extention.dart';
 
 class ThemeConst{
 
-  static String appName = "Restaurant App";
+  static String appName = "College books";
 
   //Colors for theme
 //  Color(0xfffcfcff);

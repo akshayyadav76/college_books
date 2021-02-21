@@ -6,6 +6,7 @@ import 'dart:io';
 
 import 'package:college_books/data/provider/auth.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import 'package:provider/provider.dart';
 
@@ -13,18 +14,24 @@ import 'textfield_widget.dart';
 import '../theme/extention.dart';
 import 'package:path/path.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:get/get.dart';
 
 class FeedBack extends StatefulWidget {
+
+   var _scaffoldKey = new GlobalKey<ScaffoldState>();
+   FeedBack(this._scaffoldKey);
+
   @override
   _FeedBackState createState() => _FeedBackState();
 }
 
 class _FeedBackState extends State<FeedBack> {
 
-  File _image;
+  String snapshotPath  ;
 var controller = TextEditingController();
 var controllerSnapshot = TextEditingController(text: "Tab here to add snapshot");
 var formkey = GlobalKey<FormState>();
+String responseFeedback;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -47,16 +54,16 @@ var formkey = GlobalKey<FormState>();
                         obscureText: false,
                         onTap: ()async{
                           
-                         FilePickerResult result = await FilePicker.platform.pickFiles(
+                         var result = await FilePicker.getFilePath(
           type: FileType.custom,
           allowedExtensions: ['jpg','pdf',],
         );
           if (result != null) {
-            print(result.paths[0]);
-             String fileName = basename(result.names[0]);
+            print(result);
+             String fileName = basename(result);
             setState(() {
-           //_image = File(pickedFile.path);
-           controllerSnapshot.text = result.names[0];
+           snapshotPath = result;
+           controllerSnapshot.text = fileName;
                           
                         });
           } else {
@@ -78,21 +85,52 @@ var formkey = GlobalKey<FormState>();
                                          obscureText: false,
                                          hintText: "your issue",
                                          validate: (String va){
-                                           if(va.isEmpty) return "enter Sameting";
+                                           if(va.isEmpty){ return "enter Sameting";}
+                                           return null;
                                          },
                                        ),     
                                  ),
                                  IconButton(icon: Icon(Icons.send),onPressed: (){
+                                  
+                                   String formattedDate = DateFormat('dd-MM-yyyy – h:mm:a').format(DateTime.now());
+                                  print(formattedDate);
                                     if(formkey.currentState.validate()){
                                       print("true");
-                                      Provider.of<Auth>(context,listen:false).feedBack(
+                                      //var dd =context;
+                                      Navigator.pop(context);
+                                   Provider.of<Auth>(context,listen:false).feedBack(
                                         email: "akshay@gmail.com",
-                                        issue: "i have same issue with app",
-                                        dateTime: ""
-                                      );
+                                        issue: controller.text,
+                                        dateTime: formattedDate,
+                                        filePath: snapshotPath
+                                      ).then((msg){
+                                         //final scaffold = Scaffold.of(dd);
+                                         print("thsi msg is $msg");
+                                         Get.snackbar("success",msg,
+                                         backgroundColor: Colors.black,
+                                         colorText: Colors.white,
+                                         snackPosition: SnackPosition.BOTTOM);
+                          //          widget._scaffoldKey.currentState.showSnackBar(
+                          //      SnackBar(
+                          //  content:  Text(msg),
+                          // ),
+                          //       );
+                                      }).catchError((er){
+                                        print(er);
+                                       Get.snackbar("Error",er,
+                                         backgroundColor: Colors.black,
+                                         colorText: Colors.white,
+                                         snackPosition: SnackPosition.BOTTOM);
+                                        //Get.showSnackbar(GetBar(message: "dkkkkkkkkd",));
+                                      });
                                     }else{
                                       print("false");
+                                      Navigator.pop(context);
+                                     // Get.defaultDialog(backgroundColor: Colors.black, );
+                                     // Get.showSnackbar(GetBar(message: "dkkkkkkkkd",));
+                                      //Get.snackbar("this msg ","msg",snackPosition: SnackPosition.BOTTOM);
                                     }
+
                                  },)
                               ],
                             ),

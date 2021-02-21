@@ -141,18 +141,32 @@ Future<void>firebaseChat({String msg,String name,String dateTime})async{
 }
 
 Future<String>feedBack({String filePath,String issue,String email,String dateTime})async{
-   String fileName = basename(filePath);
-   String res ="";
-final url ="";
-
-   try {
-      FormData formData = new FormData.fromMap({
-            "issue": issue,
+  var  fromData ;
+  if(filePath !=null){
+    print("file not null");
+   String fileName= basename(filePath);
+   fromData ={
+            "issue_msg": issue,
             "email":email,
-            "dateTime":dateTime,
+            "date_time":dateTime,
             "snapshot": await MultipartFile.fromFile(filePath, filename: fileName),
-            });
-      Response response = await Dio().post(url,data: formData);
+            };
+  }else{
+      fromData ={
+            "issue_msg": issue,
+            "email":email,
+            "date_time":dateTime,
+            //"snapshot": filePath
+            };
+
+
+  }
+   String res ="";
+
+print(filePath);
+   try {
+      FormData formData = new FormData.fromMap(fromData);
+      Response response = await Dio().post(EndPoints.feedbackURl,data: formData);
       if(response.statusCode ==200){
         res = response.data;
       }else{
@@ -161,6 +175,7 @@ final url ="";
       return res;
     } catch (e) {
             print("expectation Caugch: $e");
+            throw "Can't submit Feedback Try Again";
           }
 
 }

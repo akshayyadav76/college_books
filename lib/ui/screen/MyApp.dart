@@ -13,6 +13,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
 
+   var _scaffoldKey = new GlobalKey<ScaffoldState>();
 
 
 
@@ -24,8 +25,10 @@ BottomBarScreen2(),
 int index =0;
 
   Widget build(BuildContext context) {
+    
     return SafeArea(
           child: Scaffold(
+          
            floatingActionButton: FloatingActionButton(
 
              child: Icon(Icons.chat),
@@ -33,7 +36,7 @@ int index =0;
                Navigator.push(context,MaterialPageRoute(builder: (context)=>ChatScreen()));
              }
            ),
-          drawer: AppDrawer(),
+          drawer: AppDrawer(_scaffoldKey),
           bottomNavigationBar: BottomNavigationBar(
           fixedColor: Theme.of(context).accentColor,unselectedItemColor: Theme.of(context).accentColor,
           selectedLabelStyle: TextStyle(fontSize: 20.sp,color: Theme.of(context).accentColor),
@@ -51,7 +54,8 @@ int index =0;
                 label: "All Books", icon: Icon(Icons.dashboard,color: Theme.of(context).accentColor,)),
             BottomNavigationBarItem(
                 label: "Downloaded", icon: Icon(Icons.file_download,color: Theme.of(context).accentColor,)),
-          ]),
+          ]
+          ),
           body:  bottomNavigationScreens[index],
           ),
     );

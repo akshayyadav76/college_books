@@ -8,6 +8,7 @@ import 'package:college_books/ui/theme/theme_const.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
+import 'package:get/get.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -139,7 +140,7 @@ class _CollegeBooksState extends State<CollegeBooks> {
     ScreenUtil.init();
     return Consumer2<Auth,ThemeProvider>(
       builder: (context,auth,theme,child)=>
-       MaterialApp(
+       GetMaterialApp(
         debugShowCheckedModeBanner: false,
         theme:  theme.theme,
         

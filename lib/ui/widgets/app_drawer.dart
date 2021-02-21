@@ -17,6 +17,8 @@ import '../theme/extention.dart';
 
 class AppDrawer extends StatelessWidget {
 
+ var _scaffoldKey = new GlobalKey<ScaffoldState>();
+ AppDrawer(this._scaffoldKey);
 //   _launchURL(String url) async {
 //  //const url = geturl;
 //   if (await canLaunch(url)) {
@@ -122,7 +124,7 @@ Color baseColor = Color(0xFFF2F2F2);
                  borderRadius: BorderRadius.circular(10.0),
                ),
                   context: context,
-                  builder:(context)=> FeedBack(),
+                  builder:(context)=> FeedBack(_scaffoldKey),
                 );
                 // Scaffold.of(context).showBottomSheet(
                   
